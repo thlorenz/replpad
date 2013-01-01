@@ -1,0 +1,20 @@
+{
+  "name": "node-edit",
+  "version": "0.0.0",
+  "description": "Node repl editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": "",
+  "keywords": [
+    "node",
+    "repl",
+    "edit",
+    "evaluate",
+    "debug"
+  ],
+  "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
+  "license": "MIT",
+  "dependencies": {}
+}
