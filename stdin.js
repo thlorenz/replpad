@@ -1,14 +1,19 @@
+'use strict';
 /*jshint asi:true */
-var repl = require('repl')
 
-function inspect(obj, depth) {
-  console.log(require('util').inspect(obj, false, depth || 5, true));
-}
+var repl  =  require('repl')
+  , path  =  require('path')
+  , fs    =  require('fs')
+  , Kat   =  require('kat')
+  , fooin =  fs.createReadStream(path.join(__dirname, 'test/fixtures/foo.js'))
 
-inspect(repl);
+var input = new Kat();
+input.add(fooin)
+input.add(process.stdin)
+
 repl.start({
     prompt          :  'ne > '
-  , input           :  process.stdin
+  , input           :  input 
   , output          :  process.stdout
   , ignoreUndefined :  true
   , useColors       :  true

@@ -16,5 +16,7 @@
   ],
   "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "kat": "~0.1.2"
+  }
 }
