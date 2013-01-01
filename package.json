@@ -1,8 +1,8 @@
 {
-  "name": "node-edit",
+  "name": "repl-pad",
   "version": "0.0.0",
   "description": "Node repl editor",
-  "main": "index.js",
+  "main": "stdin.js",
   "scripts": {
     "test": "tap test/*.js"
   },
