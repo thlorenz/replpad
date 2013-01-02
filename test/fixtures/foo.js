@@ -1,6 +1,10 @@
-.clear
-var util = require('util');
+var a = 2
+  , b = 3;
+function sayHi() {
+  throw new Error ('hi');
+}
 
 function sayHello() {
-  return 'hello replpad!';
+  console.log(a);
+  return 'hello replpad';
 }

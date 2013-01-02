@@ -23,6 +23,8 @@
   "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
   "license": "MIT",
   "dependencies": {
-    "watch": "~0.5.1"
+    "watch": "~0.5.1",
+    "escodegen": "0.0.15",
+    "esprima": "~1.0.2"
   }
 }
