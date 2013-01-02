@@ -1,5 +1,6 @@
 .clear
-var path = require('path');
+var util = require('util');
+
 function sayHello() {
-  console.log('hello repl');
+  return 'hello replpad!';
 }

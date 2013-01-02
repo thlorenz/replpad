@@ -1,12 +1,18 @@
 {
   "name": "repl-pad",
   "version": "0.0.0",
-  "description": "Node repl editor",
+  "description": "Watches files in specified directory and pipes them to a node repl when ever they change.",
   "main": "stdin.js",
+   "bin": {
+    "replpad": "./bin/replpad.js"
+  },
   "scripts": {
     "test": "tap test/*.js"
   },
-  "repository": "",
+ "repository": {
+    "type": "git",
+    "url": "git://github.com/thlorenz/replpad.git"
+  },
   "keywords": [
     "node",
     "repl",
