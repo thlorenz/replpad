@@ -1,4 +1,4 @@
-console.log('hello world');
+var fs = require('fs');
 function sayHello() {
-  console.log('hello reploooo');
+  console.log('hello repl');
 }
