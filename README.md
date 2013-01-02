@@ -1,5 +1,5 @@
-# repl-pad
+# replpad
 
-Watches specified files and pipes or requires them inside a node repl when ever they change.
+Watches specified files and pipes them to or requires them inside a node repl when ever they change.
 
-**Nothing to see here yet, move along!**
+Only minor functionality implemented at this point, so **nothing to see here yet, move along!**

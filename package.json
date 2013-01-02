@@ -17,9 +17,6 @@
   "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
   "license": "MIT",
   "dependencies": {
-    "kat": "~0.1.2",
-    "watch": "~0.5.1",
-    "map-stream": "0.0.1",
-    "event-stream": "~3.0.10"
+    "watch": "~0.5.1"
   }
 }
