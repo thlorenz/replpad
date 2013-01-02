@@ -1,15 +1,15 @@
 {
   "name": "repl-pad",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Watches files in specified directory and pipes them to a node repl when ever they change.",
   "main": "stdin.js",
-   "bin": {
+  "bin": {
     "replpad": "./bin/replpad.js"
   },
   "scripts": {
     "test": "tap test/*.js"
   },
- "repository": {
+  "repository": {
     "type": "git",
     "url": "git://github.com/thlorenz/replpad.git"
   },
