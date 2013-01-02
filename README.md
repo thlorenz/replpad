@@ -16,8 +16,10 @@ Check out this [little screencast](http://youtu.be/rwBuSlzU57Y) to get an idea a
 
 **Note:** at this point sub directories aren't watched.
 
+## features
+
+- ensures code is parsable on a line by line basis before sending to repl by rewriting it
+
 ## todo
 
-- make sure code is parsable on a line by line basis before sending to repl
-- possibly rewrite code in order to fix the above
-- remove problematic instructions like hashbang and 'use strict'
+- remove problematic instructions like hashbang
