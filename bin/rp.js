@@ -1,3 +1,5 @@
-var repreprep = require('../lib/repreprep');
+'use strict';
+var repreprep = require('../lib/repreprep')
+  , path = require('path');
 
-repreprep(process.cwd());
+repreprep(path.join(__dirname, '../test/fixtures'));
