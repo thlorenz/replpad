@@ -1,5 +1,6 @@
 var a = 2
   , b = 3;
+
 function sayHi() {
   throw new Error ('hi');
 }
