@@ -24,7 +24,3 @@ Check out this [little screencast](http://youtu.be/rwBuSlzU57Y) to get an idea a
 
 - `Ctrl-L` clears the terminal
 - `Ctrl-D` exits replpad
-
-## todo
-
-- remove problematic instructions like hashbang
