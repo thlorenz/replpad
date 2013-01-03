@@ -20,6 +20,11 @@ Check out this [little screencast](http://youtu.be/rwBuSlzU57Y) to get an idea a
 
 - ensures code is parsable on a line by line basis before sending to repl by rewriting it
 
+## keyboard shortcuts
+
+- `Ctrl-L` clears the terminal
+- `Ctrl-D` exits replpad
+
 ## todo
 
 - remove problematic instructions like hashbang
