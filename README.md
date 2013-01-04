@@ -33,6 +33,7 @@ if `path/to/root` is omitted, the current directory is used as the root
 ## hooks
 
 - `$repl.defineCommand` to define new commands i.e.: 
+
 ```js
     define('sayhi', { 
         help: 'Says hi via .sayhi'
