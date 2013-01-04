@@ -34,10 +34,10 @@ if `path/to/root` is omitted, the current directory is used as the root
 
 - `$repl.defineCommand` to define new commands i.e.: 
 
-```js
-    define('sayhi', { 
-        help: 'Says hi via .sayhi'
-      , action: function () { console.log('Hi!) }
-    })
-```
+  ```js
+  define('sayhi', { 
+      help: 'Says hi via .sayhi'
+    , action: function () { console.log('Hi!') }
+  })
+  ```
 - `$repl.prompt = '=> '
