@@ -12,15 +12,31 @@ Check out this [little screencast](http://youtu.be/rwBuSlzU57Y) to get an idea a
 
 ## usage
 
-    replpad path/to/folder
+    replpad [path/to/root]
 
-**Note:** at this point sub directories aren't watched.
+if `path/to/root` is omitted, the current directory is used as the root
 
 ## features
 
-- ensures code is parsable on a line by line basis before sending to repl by rewriting it
+- watches all `*.js` files inside `root` and all subdirectories and sources a file to the repl once it changes
+- adjusts `__filename`, `__dirname` and `require` to work for the file that is being sourced and restores `require` to work
+  for the repl as before
+- ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
+- exposes `module.exports` of last sourced file as `$`
+- exposes the underlying repl as `$repl` in order to allow further customizations
 
 ## keyboard shortcuts
 
 - `Ctrl-L` clears the terminal
 - `Ctrl-D` exits replpad
+
+## hooks
+
+- `$repl.defineCommand` to define new commands i.e.: 
+```js
+    define('sayhi', { 
+        help: 'Says hi via .sayhi'
+      , action: function () { console.log('Hi!) }
+    })
+```
+- `$repl.prompt = '=> '
