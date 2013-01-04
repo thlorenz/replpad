@@ -40,4 +40,4 @@ if `path/to/root` is omitted, the current directory is used as the root
     , action: function () { console.log('Hi!') }
   })
   ```
-- `$repl.prompt = '=> '
+- `$repl.prompt = '=> '`
