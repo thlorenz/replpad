@@ -4,7 +4,7 @@ Watches files in specified directory and pipes them to a node repl when ever the
 
 Only minor functionality implemented at this point.
 
-Check out this [little screencast](http://youtu.be/rwBuSlzU57Y) to get an idea about what it will do.
+Check out this [little screencast](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of.
 
 ## installation
 
