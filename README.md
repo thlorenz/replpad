@@ -4,7 +4,7 @@ Watches files in specified directory and all subdirectories and pipes them to a 
 functionality to the nodejs repl.
 
 Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
-features are shown
+features are shown)
 
 ## installation
 
