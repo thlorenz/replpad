@@ -26,6 +26,7 @@
     "escodegen": "0.0.15",
     "esprima": "~1.0.2",
     "readdirp": "~0.2.2",
-    "require-like": "~0.1.2"
+    "require-like": "~0.1.2",
+    "cardinal": "~0.3.1"
   }
 }
