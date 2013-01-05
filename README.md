@@ -52,3 +52,10 @@ pad > .help
   })
   ```
 - `$repl.prompt = '=> '`
+
+## using replpad with vim
+
+- in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
+- in case you are using terminal vim, autoread is not working great, so you should add the
+  [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
+  vim configuration
