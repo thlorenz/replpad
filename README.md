@@ -26,10 +26,20 @@ if `path/to/root` is omitted, the current directory is used as the root
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
 
+## additional commands
+
+Commands in addition to default node repl commands:
+
+```sh
+pad > .help
+.append	Appends the last entered line to the last file that was sourced in the repl.
+```
+
 ## keyboard shortcuts
 
 - `Ctrl-L` clears the terminal
 - `Ctrl-D` exits replpad
+- `Ctrl-A` Appends the **last entered** line to the **last file** that was sourced in the repl.
 
 ## hooks
 
