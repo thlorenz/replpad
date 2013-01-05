@@ -34,7 +34,11 @@ Commands in addition to default node repl commands:
 ```sh
 pad > .help
 .append	Appends the last entered line to the last file that was sourced in the repl.
+.comp	Toggles if code is compacted before being sourced in the repl. [Default off]
 ```
+
+**Note:** commands that toggle a setting like `.comp` take a second parameter: `on|off`. If it is ommitted, `on` is
+used.
 
 ## keyboard shortcuts
 
