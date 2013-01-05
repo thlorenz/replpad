@@ -59,3 +59,8 @@ pad > .help
 - in case you are using terminal vim, autoread is not working great, so you should add the
   [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
   vim configuration
+
+## yet to come (possibly)
+
+- append multiple lines to file i.e. `.append2`, `.append3` ...
+- vim like bindings
