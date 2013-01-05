@@ -1,10 +1,10 @@
 # replpad
 
-Watches files in specified directory and pipes them to a node repl when ever they change.
+Watches files in specified directory and pipes them to a node repl when ever they change and adds some extra
+functionality to the nodejs repl.
 
-Only minor functionality implemented at this point.
-
-Check out this [little screencast](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of.
+Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
+features are shown
 
 ## installation
 
