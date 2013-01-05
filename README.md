@@ -21,6 +21,7 @@ if `path/to/root` is omitted, the current directory is used as the root
 - watches all `*.js` files inside `root` and all subdirectories and sources a file to the repl once it changes
 - adjusts `__filename`, `__dirname` and `require` to work for the file that is being sourced and restores `require` to work
   for the repl as before
+- highlights source code, i.e. when calling to string on a function: `require('fs').readFile.toString()`
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
