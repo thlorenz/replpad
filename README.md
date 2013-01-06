@@ -31,7 +31,7 @@ if `path/to/root` is omitted, the current directory is used as the root
 
 Some commands were added to the built in `repl` commands. Here is a list of all of them:
 
-```sh
+```
 pad > .help
 _______________
 .append         Appends the last entered line to the last file that was sourced in the repl
@@ -56,11 +56,11 @@ _______________
 _______________
 ```
 
-**Note:** commands that toggle a setting like `.comp` take a second parameter: `on|off`. If it is ommitted, `on` is
+**Note:** commands that toggle a setting like `.compact` take a second parameter: `on|off`. If it is ommitted, `on` is
 used.
 
-**Note:** when code is syntax highlighted (as is the default), it is followed by the compacted code which is necessary
-in order to have the repl evaluate it.
+**Note:** when code is syntax highlighted, it is still followed by the compacted code which is necessary in order to
+have the repl evaluate it.
 
 ## keyboard shortcuts
 
