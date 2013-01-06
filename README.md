@@ -27,17 +27,33 @@ if `path/to/root` is omitted, the current directory is used as the root
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
 
-## additional commands
+## commands
 
-Commands in addition to default node repl commands:
+Some commands were added to the built in `repl` commands. Here is a list of all of them:
 
 ```sh
 pad > .help
-.append	Appends the last entered line to the last file that was sourced in the repl.
-.comp	  Toggles if code is compacted before being sourced in the repl. [Default on]
-.depth	Set the depth to which an object is traversed when printed to the console. [Default 2]
-.hidden	Set whether hidden properties are included when an object is traversed when printed to the console. [Default off]
-.syntax	Toggles if code is printed syntax highighted before being sourced in the repl. [Default off]syntax	Toggles if code is printed syntax highighted before being sourced in the repl. [Default off]
+_______________
+.append         Appends the last entered line to the last file that was sourced in the repl
+_______________
+.clear          Break, and also clear the local context
+_______________
+.compact        Toggles if code is compacted before being sourced in the repl [Default on]
+_______________
+.depth          Set the depth to which an object is traversed when printed to the repl [Default 2]
+_______________
+.exit           Exit the repl
+_______________
+.help           Show repl options
+_______________
+.hidden         Set whether hidden properties are included when an object is traversed when printed to the repl [Default off]
+_______________
+.highlight      Toggles if syntax highlighted code is printed to the repl before being sourced in the repl [Default off]
+_______________
+.load           Load JS from a file into the REPL session
+_______________
+.save           Save all evaluated commands in this REPL session to a file
+_______________
 ```
 
 **Note:** commands that toggle a setting like `.comp` take a second parameter: `on|off`. If it is ommitted, `on` is
