@@ -6,17 +6,17 @@ functionality to the nodejs repl.
 Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
 features are shown)
 
-## installation
+## Installation
 
     npm install -g replpad
 
-## usage
+## Usage
 
     replpad [path/to/root]
 
 if `path/to/root` is omitted, the current directory is used as the root
 
-## features
+## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
 - **adjusts `__filename`, `__dirname` and `require`** to work for the file that is being sourced and restores `require` to work
@@ -27,7 +27,21 @@ if `path/to/root` is omitted, the current directory is used as the root
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
 
-## commands
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Commands](#commands)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Hooks](#hooks)
+- [Vim Bindings](#vim-bindings)
+  - [Insert Mode](#insert-mode)
+  - [Normal Mode](#normal-mode)
+    - [Movements](#movements)
+    - [Movements combined with Actions](#movements-combined-with-actions)
+    - [History](#history)
+- [Using replpad with Vim](#using-replpad-with-vim)
+- [Yet to come (possibly)](#yet-to-come-possibly)
+
+## Commands
 
 Some commands were added to the built in `repl` commands. Here is a list of all of them:
 
@@ -62,13 +76,13 @@ used.
 **Note:** when code is syntax highlighted, it is still followed by the compacted code which is necessary in order to
 have the repl evaluate it.
 
-## keyboard shortcuts
+## Keyboard Shortcuts
 
 - `Ctrl-L` clears the terminal
 - `Ctrl-D` exits replpad
 - `Ctrl-A` Appends the **last entered** line to the **last file** that was sourced in the repl.
 
-## hooks
+## Hooks
 
 - `$repl.defineCommand` to define new commands i.e.: 
 
@@ -80,14 +94,49 @@ have the repl evaluate it.
   ```
 - `$repl.prompt = '=> '`
 
-## using replpad with vim
+## Vim Bindings
+
+A subset of vim keybindings is supported by `replpad`:
+
+### Insert Mode
+
+- `Esc`, `Ctrl-[`: normal mode
+
+### Normal Mode
+
+- `i`, `I`, `a`, `A`: insert mode with the usual side effects
+
+#### Movements
+
+- `h` cursor left
+- `l` cursor right
+- `w` word right
+- `b` word left
+
+#### Movements combined with Actions
+
+- `cb`: change word left
+- `cw`: change word right
+- `cc`, `C` change line
+- `db`: delete word left
+- `dw`: delete word right
+- `dd`, `D` delete line
+- `x` delete right
+- `X` delete left
+
+#### History
+
+- `k` go back in history
+- `j` go forward in history
+
+## Using replpad with Vim
 
 - in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
 - in case you are using terminal vim, autoread is not working great, so you should add the
   [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
   vim configuration
 
-## yet to come (possibly)
+## Yet to come (possibly)
 
 - append multiple lines to file i.e. `.append2`, `.append3` ...
-- vim like bindings
+- more vim bindings
