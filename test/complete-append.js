@@ -3,7 +3,19 @@
 
 var test = require('tape')
   , completeAppend = require('../lib/complete-append')
+  , state = require('../lib/state')
 
+state.format = {
+    indent      :  { style: '  ', base: 0 }
+  , quotes      :  'single'
+  , json        :  false
+  , renumber    :  false
+  , hexadecimal :  false
+  , escapeless  :  false
+  , compact     :  true
+  , parentheses :  false
+  , semicolons  :  true
+};
 
 test('\n# handles no history case', function (t) {
   var history = []
@@ -27,7 +39,7 @@ test('\n# appends first expression before command', function (t) {
     ,  'var a = true;'
     ,  '.append'
     ].reverse()
-    , expected = '\nvar a = true;'
+    , expected = '\nvar a = true;\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -37,7 +49,7 @@ test('\n# appends first expression before command', function (t) {
 
 test('\n# appends multiline function before commands', function (t) {
   var history = [
-      'function foo () {'
+      'function foo() {'
     ,  '  var a = 2;'
     ,  '  return a + 1;'
     ,  '}'
@@ -45,7 +57,7 @@ test('\n# appends multiline function before commands', function (t) {
     ,  '.append'
     ].reverse()
 
-    , expected = '\nfunction foo () {\n  var a = 2;\n  return a + 1;\n}'
+    , expected = '\nfunction foo() {\n  var a = 2;\n  return a + 1;\n}\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -57,12 +69,29 @@ test('\n# completes 3 line function at end of history', function (t) {
   var history = [
       '1'
     , '2'
-    , 'function foo () {'
+    , 'function foo() {'
     ,  '  var a = 2;'
     ,  '  return a + 1;'
     ,  '}'
     ].reverse()
-    , expected = '\nfunction foo () {\n  var a = 2;\n  return a + 1;\n}'
+    , expected = '\nfunction foo() {\n  var a = 2;\n  return a + 1;\n}\n'
+    , append = completeAppend(history)
+
+    t.equals(append.raw, expected, 'gets raw')
+    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
+    t.end()
+})
+
+test('\n# completes 3 line function at end of history that are badly formatted in a better formatted way', function (t) {
+  var history = [
+      '1'
+    , '2'
+    , 'function foo() {'
+    ,  'var a = 2;'
+    ,  '           return a + 1;'
+    ,  '}'
+    ].reverse()
+    , expected = '\nfunction foo() {\n  var a = 2;\n  return a + 1;\n}\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -76,7 +105,7 @@ test('\n# does not complete incomplete function at end of history', function (t)
     ,  '  return a + 1;'
     ,  '}'
     ].reverse()
-    , expected = '\n}'
+    , expected = '\n}\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -89,7 +118,7 @@ test('\n# completes 2 + 3 at end of history', function (t) {
        '3 + 4'
     ,  '2 + 3'
     ].reverse()
-    , expected = '\n2 + 3'
+    , expected = '\n2 + 3;\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -105,7 +134,7 @@ test('\n# completes var a = true; at end of history with complete function right
     ,  '}'
     ,  'var a = true;'
     ].reverse()
-    , expected = '\nvar a = true;'
+    , expected = '\nvar a = true;\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -121,7 +150,7 @@ test('\n# does not complete "var a =" at end of history with complete function r
     ,  '}'
     ,  'var a ='
     ].reverse()
-    , expected = '\nvar a ='
+    , expected = '\nvar a =\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
@@ -134,7 +163,7 @@ test('\n# completes 2 + 3 close to end whan .append is at end of history, thus i
        '2 + 3'
     ,  '.append'
     ].reverse()
-    , expected = '\n2 + 3'
+    , expected = '\n2 + 3;\n'
     , append = completeAppend(history)
 
     t.equals(append.raw, expected, 'gets raw')
