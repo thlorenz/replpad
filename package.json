@@ -7,7 +7,7 @@
     "replpad": "./bin/replpad.js"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "node test/*.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,8 @@
     "require-like": "~0.1.2",
     "cardinal": "~0.3.1",
     "dox": "~0.4.1"
+  },
+  "devDependencies": {
+    "tape": "~0.1.5"
   }
 }

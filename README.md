@@ -1,4 +1,4 @@
-# replpad
+# replpad [![build status](https://secure.travis-ci.org/thlorenz/replpad.png)](http://next.travis-ci.org/thlorenz/replpad)
 
 Watches files in specified directory and all subdirectories and pipes them to a node repl whenever they change. Adds some extra
 functionality to the nodejs repl.
