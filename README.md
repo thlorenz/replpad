@@ -137,6 +137,8 @@ A subset of vim keybindings is supported by `replpad`:
 - `l` cursor right
 - `w` word right
 - `b` word left
+- `0` beginning of line
+- `$` end of line
 
 #### Movements combined with Actions
 
