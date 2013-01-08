@@ -24,6 +24,7 @@ if `path/to/root` is omitted, the current directory is used as the root
 - **highlights source code**, i.e. when calling to string on a function: `require('fs').readFile.toString()`
 - **adds commands and keyboard shortcuts** to make using the repl more convenient
 - **vim key bindings**
+- **appends code entered in repl back to file** via keyboard shortcut or `.append` command
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
@@ -33,6 +34,7 @@ if `path/to/root` is omitted, the current directory is used as the root
 - [Commands](#commands)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Hooks](#hooks)
+- [Smart Append](#smart-append)
 - [Vim Bindings](#vim-bindings)
   - [Insert Mode](#insert-mode)
   - [Normal Mode](#normal-mode)
@@ -49,7 +51,7 @@ Some commands were added to the built in `repl` commands. Here is a list of all 
 ```
 pad > .help
 _______________
-.append         Appends the last entered line to the last file that was sourced in the repl
+.append         Appends the last entered parsable chunk of code or the last line to the last file that was sourced in the repl
 _______________
 .clear          Break, and also clear the local context
 _______________
@@ -81,7 +83,7 @@ have the repl evaluate it.
 
 - `Ctrl-L` clears the terminal
 - `Ctrl-D` exits replpad
-- `Ctrl-A` Appends the **last entered** line to the **last file** that was sourced in the repl.
+- `Ctrl-A` Appends the **last entered** parsable chunk of code or the last line to the **last file** that was sourced in the repl.
 
 ## Hooks
 
@@ -94,6 +96,28 @@ have the repl evaluate it.
   })
   ```
 - `$repl.prompt = '=> '`
+
+## Smart Append
+
+When the `.append` command or the append keyboard shortcut is executed, `replpad` will attempt to find a parsable chunk
+of code to append. If the last line is parsable or no parsable chunk is found, it will append the last line.
+
+**Example:**
+
+Assume we entered:
+```js
+2 + 3
+function foo() {
+  var a = 2;
+  return a;
+}
+```
+
+The first valid JavaScript are the last 4 lines combined. Therefore the entire function `foo` will be appended. This is
+makes more sense than appending just `}` for instance.
+
+Additionally the code is reformatted with 2 space indents.
+
 
 ## Vim Bindings
 
@@ -141,3 +165,4 @@ A subset of vim keybindings is supported by `replpad`:
 
 - append multiple lines to file i.e. `.append2`, `.append3` ...
 - more vim bindings
+- make code style used to append code and `toString` a function configurable
