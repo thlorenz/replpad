@@ -28,7 +28,8 @@
     "readdirp": "~0.2.2",
     "require-like": "~0.1.2",
     "cardinal": "~0.3.1",
-    "dox": "~0.4.1"
+    "sax": "~0.5.1",
+    "ansicolors": "~0.2.1"
   },
   "devDependencies": {
     "tape": "~0.1.5"
