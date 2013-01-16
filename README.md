@@ -25,6 +25,8 @@ if `path/to/root` is omitted, the current directory is used as the root
 - **adds commands and keyboard shortcuts** to make using the repl more convenient
 - **vim key bindings**
 - **appends code entered in repl back to file** via keyboard shortcut or `.append` command
+- **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e.
+  `fs.readdir.dox()`
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
