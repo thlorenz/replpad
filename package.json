@@ -31,7 +31,8 @@
     "ansicolors": "~0.2.1",
     "hermit": "~0.2.0",
     "ansistyles": "~0.1.0",
-    "request": "~2.12.0"
+    "request": "~2.12.0",
+    "mkdirp": "~0.3.4"
   },
   "devDependencies": {
     "tape": "~0.1.5"
