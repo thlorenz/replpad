@@ -1,7 +1,7 @@
 /*jshint asi:true */
 'use strict';
 
-var test = require('tape')
+var test = require('tap').test
   , completeAppend = require('../lib/complete-append')
   , state = require('../lib/state')
 
