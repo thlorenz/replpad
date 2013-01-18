@@ -12,19 +12,18 @@ test('when I retrieve fs', function (t) {
     t.equal(err, null, 'returns no error')    
     t.equal(doc.modules[0].name, 'fs', 'returns doc for file module')
   }))
-
 })
 
 test('when I retrieve path', function (t) {
-  coreRetrieve(rootUrl + '/path.json', 'path', function (err, doc) {
+  t.cb(coreRetrieve(rootUrl + '/path.json', 'path', function (err, doc) {
     t.notOk(err, 'returns no error')    
     t.equal(doc.modules[0].name, 'path', 'returns doc for path module')
-  })
+  }))
 })
 
 test('when I retrieve nonexistingmodule', function (t) {
-  coreRetrieve(rootUrl + '/nonexistingmodule.json', 'nonexistingmodule', function (err, doc) {
+  t.cb(coreRetrieve(rootUrl + '/nonexistingmodule.json', 'nonexistingmodule', function (err, doc) {
     t.ok(err, 'returns error')    
     t.similar(err.message, /.+not found./, 'err indicates that the documentation was not found')
-  })
+  }))
 })
