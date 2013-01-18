@@ -7,7 +7,7 @@
     "replpad": "./bin/replpad.js"
   },
   "scripts": {
-    "test": "tap test/"
+    "test": "node-trap test/*.js && node-trap test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -32,11 +32,9 @@
     "hermit": "~0.2.0",
     "ansistyles": "~0.1.0",
     "request": "~2.12.0",
-    "mkdirp": "~0.3.4",
-    "tap": "~0.3.3"
+    "mkdirp": "~0.3.4"
   },
   "devDependencies": {
-    "tape": "~0.1.5",
-    "readdirp": "~0.2.2"
+    "trap": "git://github.com/thlorenz/trap.git#ok"
   }
 }

@@ -1,7 +1,7 @@
 /*jshint asi:true */
 'use strict';
 
-var test = require('tap').test
+var test = require('trap').test
   , completeAppend = require('../lib/complete-append')
   , state = require('../lib/state')
 
@@ -17,23 +17,21 @@ state.format = {
   , semicolons  :  true
 };
 
-test('\n# handles no history case', function (t) {
+test('handles no history case', function (t) {
   var history = []
     , append = completeAppend(history)
 
-  t.equals(append, null, 'returns null')
-  t.end()
+  t.equal(append, null, 'returns null')
 })
 
-test('\n# handles command only case', function (t) {
+test('handles command only case', function (t) {
   var history = [' .append  ']
     , append = completeAppend(history)
 
-  t.equals(append, null, 'returns null')
-  t.end()
+  t.equal(append, null, 'returns null')
 })
 
-test('\n# appends first expression before command', function (t) {
+test('appends first expression before command', function (t) {
   var history = [
        '2 + 3'
     ,  'var a = true;'
@@ -42,12 +40,11 @@ test('\n# appends first expression before command', function (t) {
     , expected = '\nvar a = true;\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
 
-test('\n# appends multiline function before commands', function (t) {
+test('appends multiline function before commands', function (t) {
   var history = [
       'function foo() {'
     ,  '  var a = 2;'
@@ -60,12 +57,11 @@ test('\n# appends multiline function before commands', function (t) {
     , expected = '\nfunction foo() {\n  var a = 2;\n  return a + 1;\n}\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
 
-test('\n# completes 3 line function at end of history', function (t) {
+test('completes 3 line function at end of history', function (t) {
   var history = [
       '1'
     , '2'
@@ -77,12 +73,11 @@ test('\n# completes 3 line function at end of history', function (t) {
     , expected = '\nfunction foo() {\n  var a = 2;\n  return a + 1;\n}\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
 
-test('\n# completes 3 line function at end of history that are badly formatted in a better formatted way', function (t) {
+test('completes 3 line function at end of history that are badly formatted in a better formatted way', function (t) {
   var history = [
       '1'
     , '2'
@@ -94,12 +89,11 @@ test('\n# completes 3 line function at end of history that are badly formatted i
     , expected = '\nfunction foo() {\n  var a = 2;\n  return a + 1;\n}\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
 
-test('\n# does not complete incomplete function at end of history', function (t) {
+test('does not complete incomplete function at end of history', function (t) {
   var history = [
        '  var a = 2;'
     ,  '  return a + 1;'
@@ -108,12 +102,11 @@ test('\n# does not complete incomplete function at end of history', function (t)
     , expected = '\n}\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.equals(append.raw, append.highlighted, 'does not highlight')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.equal(append.raw, append.highlighted, 'does not highlight')
 })
 
-test('\n# completes 2 + 3 at end of history', function (t) {
+test('completes 2 + 3 at end of history', function (t) {
   var history = [
        '3 + 4'
     ,  '2 + 3'
@@ -121,12 +114,11 @@ test('\n# completes 2 + 3 at end of history', function (t) {
     , expected = '\n2 + 3;\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
 
-test('\n# completes var a = true; at end of history with complete function right before', function (t) {
+test('completes var a = true; at end of history with complete function right before', function (t) {
   var history = [
       'function foo () {'
     ,  '  var a = 2;'
@@ -137,12 +129,11 @@ test('\n# completes var a = true; at end of history with complete function right
     , expected = '\nvar a = true;\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
 
-test('\n# does not complete "var a =" at end of history with complete function right before', function (t) {
+test('does not complete "var a =" at end of history with complete function right before', function (t) {
   var history = [
       'function foo () {'
     ,  '  var a = 2;'
@@ -153,12 +144,11 @@ test('\n# does not complete "var a =" at end of history with complete function r
     , expected = '\nvar a =\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.equals(append.raw, append.highlighted, 'does not highlight')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.equal(append.raw, append.highlighted, 'does not highlight')
 })
 
-test('\n# completes 2 + 3 close to end whan .append is at end of history, thus ignoring .append', function (t) {
+test('completes 2 + 3 close to end whan .append is at end of history, thus ignoring .append', function (t) {
   var history = [
        '2 + 3'
     ,  '.append'
@@ -166,7 +156,6 @@ test('\n# completes 2 + 3 close to end whan .append is at end of history, thus i
     , expected = '\n2 + 3;\n'
     , append = completeAppend(history)
 
-    t.equals(append.raw, expected, 'gets raw')
-    t.notEquals(append.raw, append.highlighted, 'gets highlighted')
-    t.end()
+    t.equal(append.raw, expected, 'gets raw')
+    t.notEqual(append.raw, append.highlighted, 'gets highlighted')
 })
