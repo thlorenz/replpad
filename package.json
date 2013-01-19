@@ -1,6 +1,6 @@
 {
   "name": "replpad",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Watches files in specified directory and pipes them to a node repl when ever they change.",
   "main": "stdin.js",
   "bin": {
