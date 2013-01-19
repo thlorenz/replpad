@@ -38,11 +38,6 @@ if `path/to/root` is omitted, the current directory is used as the root
 - [Hooks](#hooks)
 - [Smart Append](#smart-append)
 - [Vim Bindings](#vim-bindings)
-  - [Insert Mode](#insert-mode)
-  - [Normal Mode](#normal-mode)
-    - [Movements](#movements)
-    - [Movements combined with Actions](#movements-combined-with-actions)
-    - [History](#history)
 - [Using replpad with Vim](#using-replpad-with-vim)
 - [Yet to come (possibly)](#yet-to-come-possibly)
 
@@ -123,40 +118,9 @@ Additionally the code is reformatted with 2 space indents.
 
 ## Vim Bindings
 
-A subset of vim keybindings is supported by `replpad`:
+A subset of vim bindings are added to `replpad` via [readline-vim](https://github.com/thlorenz/readline-vim).
 
-### Insert Mode
-
-- `Esc`, `Ctrl-[`: normal mode
-
-### Normal Mode
-
-- `i`, `I`, `a`, `A`: insert mode with the usual side effects
-
-#### Movements
-
-- `h` cursor left
-- `l` cursor right
-- `w` word right
-- `b` word left
-- `0` beginning of line
-- `$` end of line
-
-#### Movements combined with Actions
-
-- `cb`: change word left
-- `cw`: change word right
-- `cc`, `C` change line
-- `db`: delete word left
-- `dw`: delete word right
-- `dd`, `D` delete line
-- `x` delete right
-- `X` delete left
-
-#### History
-
-- `k` go back in history
-- `j` go forward in history
+Consult its readme for [available vim bindings](https://github.com/thlorenz/readline-vim#vim-bindings).
 
 ## Using replpad with Vim
 
