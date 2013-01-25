@@ -36,6 +36,7 @@
     "readline-vim": "~0.1.1"
   },
   "devDependencies": {
-    "trap": "git://github.com/thlorenz/trap.git#ok"
+    "trap": "~0.3.2",
+    "readline-vim": "~0.1.1"
   }
 }
