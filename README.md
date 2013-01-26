@@ -16,7 +16,7 @@ features are shown)
 
 **Example:** `replpad .` watches current directory and all sub directories.
 
-If `path/to/root` is omitted then no file are watched.
+If `path/to/root` is omitted then no files are watched.
 
 ## Features
 
@@ -26,6 +26,7 @@ If `path/to/root` is omitted then no file are watched.
 - **highlights source code**, i.e. when calling to string on a function: `require('fs').readFile.toString()`
 - **adds commands and keyboard shortcuts** to make using the repl more convenient
 - **vim key bindings**
+- **key map support**
 - **appends code entered in repl back to file** via keyboard shortcut or `.append` command
 - **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e.
   `fs.readdir.dox()`
@@ -41,7 +42,6 @@ If `path/to/root` is omitted then no file are watched.
 - [Smart Append](#smart-append)
 - [Vim Bindings](#vim-bindings)
 - [Using replpad with Vim](#using-replpad-with-vim)
-- [Yet to come (possibly)](#yet-to-come-possibly)
 
 ## Commands
 
@@ -49,31 +49,29 @@ Some commands were added to the built in `repl` commands. Here is a list of all 
 
 ```
 pad > .help
-_______________
 .append         Appends the last entered parsable chunk of code or the last line to the last file that was sourced in the repl
-_______________
+
 .clear          Break, and also clear the local context
-_______________
-.compact        Toggles if code is compacted before being sourced in the repl [Default on]
-_______________
-.depth          Set the depth to which an object is traversed when printed to the repl [Default 2]
-_______________
+
+.compact        [on] Toggles if code is compacted before being sourced to the repl
+
+.depth          [2] Sets the depth to which an object is traversed when printed to the repl
+
 .exit           Exit the repl
-_______________
-.help           Show repl options
-_______________
-.hidden         Set whether hidden properties are included when an object is traversed when printed to the repl [Default off]
-_______________
-.highlight      Toggles if syntax highlighted code is printed to the repl before being sourced in the repl [Default off]
-_______________
+
+.help           Show this list of repl commands
+
+.hidden         [off] Set whether hidden properties are included during traversal of an object that is printed to the repl
+
+.highlight      [off] Toggles if syntax highlighted code is printed to the repl before being sourced
+
 .load           Load JS from a file into the REPL session
-_______________
+
 .save           Save all evaluated commands in this REPL session to a file
-_______________
 ```
 
-**Note:** commands that toggle a setting like `.compact` take a second parameter: `on|off`. If it is ommitted, `on` is
-used.
+**Note:** commands that toggle a setting like `.compact` take a second parameter: `on|off`. If it is ommitted the state
+is toggled, i.e if it was `on` it is turned `off` and vice versa.
 
 **Note:** when code is syntax highlighted, it is still followed by the compacted code which is necessary in order to
 have the repl evaluate it.
@@ -131,8 +129,6 @@ Consult its readme for [available vim bindings](https://github.com/thlorenz/read
   [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
   vim configuration
 
-## Yet to come (possibly)
+## Roadmap
 
-- append multiple lines to file i.e. `.append2`, `.append3` ...
 - more vim bindings
-- make code style used to append code and `toString` a function configurable
