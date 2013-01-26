@@ -10,7 +10,7 @@ module.exports = function (repl, cb) {
   resolve(function (config) {
     if (config.map) {
       if (typeof config.map !== 'function')
-        log.error('Found "map" in config, but it is a [%s]. It needs to be a function (ignoring for now).', typeof config.map);
+        log.errorln('Found "map" in config, but it is a [%s]. It needs to be a function (ignoring for now).', typeof config.map);
       else 
         config.map(vim.map.normal, vim.map.insert);
     }

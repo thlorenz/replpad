@@ -14,7 +14,9 @@ features are shown)
 
     replpad [path/to/root]
 
-if `path/to/root` is omitted, the current directory is used as the root
+**Example:** `replpad .` watches current directory and all sub directories.
+
+If `path/to/root` is omitted then no file are watched.
 
 ## Features
 

@@ -4,6 +4,6 @@
 var repreprep = require('../lib/repreprep')
   , path = require('path');
 
-var root = process.argv.length > 2 ? path.resolve(process.argv[2]) : process.cwd();
+var root = process.argv.length > 2 ? path.resolve(process.argv[2]) : null;
 
 repreprep(root);
