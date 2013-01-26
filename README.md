@@ -33,6 +33,7 @@ features are shown)
 - [Vim](#vim)
   - [Vim Bindings](#vim-bindings)
   - [Vim like key maps](#vim-like-key-maps)
+    -[Limitations](#limitations)
   - [Using replpad with Vim](#using-replpad-with-vim)
 - [Configuring replpad](#configuring-replpad)
 - [Roadmap](#roadmap)
@@ -137,10 +138,9 @@ Consult its readme for [available vim bindings](https://github.com/thlorenz/read
 // map 'ctrl-t' to 'esc', allowing to switch to normal mode via 'ctrl-t'
 $repl.imap('ctrl-t', 'esc'); 
 
-// map 'u' to 'ctrl-l', allowing to clear the screen in normal mode via 'u'
-$repl.nmap('u', 'ctrl-l');
+// go forward in history via 'ctrl-space' in normal mode
+$repl.nmap('ctrl-space', 'j')
 ```
-
 You can list all registered mappings via: `$repl.maps`.
 
 These are handled by [readline-vim](https://github.com/thlorenz/readline-vim), so in order to learn more please read
@@ -149,8 +149,13 @@ These are handled by [readline-vim](https://github.com/thlorenz/readline-vim), s
 You can also declare mappings to be applied at startup by including them inside the map section of your config file as
 explained in [configuring replpad](#configuring-replpad).
 
-**Note:** mappings are limited by what the underlying nodejs `readline` supports. Consult [this
+#### Limitations
+
+Mappings are limited by what the underlying nodejs `readline` supports. Consult [this
 section](https://github.com/thlorenz/stringify-key#limitations) for more information.
+
+In general I found that only a few mappings in `normal` mode have the desired effect. In `insert` mode things are
+somewhat better.
 
 ### Using replpad with Vim
 
