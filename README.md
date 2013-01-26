@@ -21,27 +21,17 @@ If `path/to/root` is omitted then no files are watched.
 ## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
-- **adjusts `__filename`, `__dirname` and `require`** to work for the file that is being sourced and restores `require` to work
-  for the repl as before
-- **highlights source code**, i.e. when calling to string on a function: `require('fs').readFile.toString()`
-- **adds commands and keyboard shortcuts** to make using the repl more convenient
+- **highlights source code**, i.e. `require('fs').readFile.src`
+- **adds commands and keyboard shortcuts** 
 - **vim key bindings**
 - **key map support**
 - **appends code entered in repl back to file** via keyboard shortcut or `.append` command
 - **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e.
   `fs.readdir.dox()`
+- **adjusts `__filename`, `__dirname` and `require`** to work for the file that is being sourced 
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
-
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
-
-- [Commands](#commands)
-- [Keyboard Shortcuts](#keyboard-shortcuts)
-- [Hooks](#hooks)
-- [Smart Append](#smart-append)
-- [Vim Bindings](#vim-bindings)
-- [Using replpad with Vim](#using-replpad-with-vim)
 
 ## Commands
 
