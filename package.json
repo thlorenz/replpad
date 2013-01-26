@@ -1,6 +1,6 @@
 {
   "name": "replpad",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.",
   "main": "stdin.js",
   "bin": {
