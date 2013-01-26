@@ -3,9 +3,9 @@
 
 var test = require('trap').test
   , completeAppend = require('../lib/complete-append')
-  , state = require('../lib/state')
+  , config = require('../config/current')
 
-state.format = {
+config.format = {
     indent      :  { style: '  ', base: 0 }
   , quotes      :  'single'
   , json        :  false
