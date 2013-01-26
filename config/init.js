@@ -1,10 +1,12 @@
 'use strict';
 
-var resolve = require('./resolve')
-  , log = require('../lib/log');
+var resolve =  require('./resolve')
+  , log     =  require('../lib/log')
+  , vimrli  =  require('../lib/vim-rli')
+  ; 
 
-module.exports = function (repl, vim, cb) {
-  console.log(vim);
+module.exports = function (repl, cb) {
+  var vim = vimrli.vim;
   resolve(function (config) {
     if (config.map) {
       if (typeof config.map !== 'function')
