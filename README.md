@@ -1,6 +1,6 @@
 # replpad [![build status](https://secure.travis-ci.org/thlorenz/replpad.png)](http://next.travis-ci.org/thlorenz/replpad)
 
-Watches files in specified directory and all subdirectories and pipes them to a node repl whenever they change. Adds some extra
+Watches files in specified directory and all subdirectories and pipes them to a node repl whenever they change. Adds lots of extra
 functionality to the nodejs repl.
 
 Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
@@ -122,19 +122,28 @@ A subset of vim bindings are added to `replpad` via [readline-vim](https://githu
 
 Consult its readme for [available vim bindings](https://github.com/thlorenz/readline-vim#vim-bindings).
 
-## Using replpad with Vim
-
-- in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
-- in case you are using terminal vim, autoread is not working great, so you should add the
-  [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
-  vim configuration
-
 ## Vim like key maps
 
 `replpad` allows you to specify keymaps. 
 
+`imap` is used to map keys in **insert** mode and `nmap` to map keys in **normal** mode.
+
+```js
+// map 'ctrl-t' to 'esc', allowing to switch to normal mode via 'ctrl-t'
+$repl.imap('ctrl-t', 'esc'); 
+
+// map 'u' to 'ctrl-l', allowing to clear the screen in normal mode via 'u'
+$repl.nmap('u', 'ctrl-l');
+```
+
 These are handled by [readline-vim](https://github.com/thlorenz/readline-vim), so in order to learn more please read
 [this section](https://github.com/thlorenz/readline-vim#mappings).
+
+You can also declare mappings to be applied at startup by including them inside the map section of your config file as
+explained in [configuring replpad](#configuring-replpad).
+
+**Note:** mappings are limited by what the underlying nodejs `readline` supports. Consult [this
+section](https://github.com/thlorenz/stringify-key#limitations) for more information.
 
 ## Configuring replpad
 
@@ -144,6 +153,15 @@ When launched for the first time it creates a config file at `~/.config/replpad/
 the [default-config](https://github.com/thlorenz/replpad/blob/master/config/default-config.js), but you can edit it to
 change these defaults.
 
+Reading the comments in that file should give you enough information to tweak it.
+
 ## Roadmap
 
 - more vim bindings
+
+## Using replpad with Vim
+
+- in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
+- in case you are using terminal vim, autoread is not working great, so you should add the
+  [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
+  vim configuration
