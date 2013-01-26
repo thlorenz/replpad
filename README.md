@@ -129,6 +129,21 @@ Consult its readme for [available vim bindings](https://github.com/thlorenz/read
   [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
   vim configuration
 
+## Vim like key maps
+
+`replpad` allows you to specify keymaps. 
+
+These are handled by [readline-vim](https://github.com/thlorenz/readline-vim), so in order to learn more please read
+[this section](https://github.com/thlorenz/readline-vim#mappings).
+
+## Configuring replpad
+
+`replpad` is fully configurable. 
+
+When launched for the first time it creates a config file at `~/.config/replpad/config.js`. Initially this is a copy of
+the [default-config](https://github.com/thlorenz/replpad/blob/master/config/default-config.js), but you can edit it to
+change these defaults.
+
 ## Roadmap
 
 - more vim bindings
