@@ -5,7 +5,7 @@ var test = require('trap').test
   , completeAppend = require('../lib/complete-append')
   , config = require('../config/current')
 
-config.format = {
+config.feed.format = {
     indent      :  { style: '  ', base: 0 }
   , quotes      :  'single'
   , json        :  false
