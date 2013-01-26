@@ -3,21 +3,6 @@
 Watches files in specified directory and all subdirectories and pipes them to a node repl whenever they change. Adds lots of extra
 functionality to the nodejs repl.
 
-Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
-features are shown)
-
-## Installation
-
-    npm install -g replpad
-
-## Usage
-
-    replpad [path/to/root]
-
-**Example:** `replpad .` watches current directory and all sub directories.
-
-If `path/to/root` is omitted then no files are watched.
-
 ## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
@@ -33,8 +18,13 @@ If `path/to/root` is omitted then no files are watched.
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
 
+Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
+features are shown)
+
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
+- [Installation](#installation)
+- [Usage](#usage) 
 - [Commands](#commands)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Smart Append](#smart-append)
@@ -44,6 +34,19 @@ If `path/to/root` is omitted then no files are watched.
   - [Using replpad with Vim](#using-replpad-with-vim)
 - [Configuring replpad](#configuring-replpad)
 - [Roadmap](#roadmap)
+
+## Installation
+
+    npm install -g replpad
+
+## Usage
+
+    replpad [path/to/root]
+
+If `path/to/root` is omitted then no files are watched.
+
+**Example:** `replpad .` watches current directory and all sub directories.
+
 
 ## Commands
 
