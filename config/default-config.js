@@ -77,3 +77,11 @@ exports.inspect =  {
  */
 exports.highlight = false;
 
+
+/**
+ * Set the repl prompt
+ * You may optionally use colors.
+ * Can be set in repl via: $repl.prompt = 'your prompt'
+ * @name 
+ */
+exports.prompt = 'pad > ';

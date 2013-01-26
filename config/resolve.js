@@ -21,7 +21,7 @@ module.exports = function (cb) {
         return;
       }
 
-      log.infoln('Created replpad config at: ', paths.configFile);
+      log.print(colors.yellow('\nCreated replpad config at: %s\n'), paths.configFile);
       cb(require(paths.configFile));
     });
   } else {
