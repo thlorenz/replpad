@@ -33,6 +33,18 @@ If `path/to/root` is omitted then no files are watched.
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
 
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Commands](#commands)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Smart Append](#smart-append)
+- [Vim](#vim)
+  - [Vim Bindings](#vim-bindings)
+  - [Vim like key maps](#vim-like-key-maps)
+  - [Using replpad with Vim](#using-replpad-with-vim)
+- [Configuring replpad](#configuring-replpad)
+- [Roadmap](#roadmap)
+
 ## Commands
 
 Some commands were added to the built in `repl` commands. Here is a list of all of them:
@@ -66,23 +78,20 @@ is toggled, i.e if it was `on` it is turned `off` and vice versa.
 **Note:** when code is syntax highlighted, it is still followed by the compacted code which is necessary in order to
 have the repl evaluate it.
 
+You can add commands to the repl in real time via `$repl.defineCommand`
+
+```js
+$repl.define('sayhi', { 
+    help: 'Says hi via .sayhi'
+  , action: function () { console.log('Hi!') }
+})
+```
+
 ## Keyboard Shortcuts
 
 - `Ctrl-L` clears the terminal
 - `Ctrl-D` exits replpad
 - `Ctrl-A` Appends the **last entered** parsable chunk of code or the last line to the **last file** that was sourced in the repl.
-
-## Hooks
-
-- `$repl.defineCommand` to define new commands i.e.: 
-
-  ```js
-  $repl.define('sayhi', { 
-      help: 'Says hi via .sayhi'
-    , action: function () { console.log('Hi!') }
-  })
-  ```
-- `$repl.prompt = '=> '`
 
 ## Smart Append
 
@@ -105,14 +114,15 @@ makes more sense than appending just `}` for instance.
 
 Additionally the code is reformatted with 2 space indents.
 
+## Vim
 
-## Vim Bindings
+### Vim Bindings
 
 A subset of vim bindings are added to `replpad` via [readline-vim](https://github.com/thlorenz/readline-vim).
 
 Consult its readme for [available vim bindings](https://github.com/thlorenz/readline-vim#vim-bindings).
 
-## Vim like key maps
+### Vim like key maps
 
 `replpad` allows you to specify keymaps. 
 
@@ -135,6 +145,13 @@ explained in [configuring replpad](#configuring-replpad).
 **Note:** mappings are limited by what the underlying nodejs `readline` supports. Consult [this
 section](https://github.com/thlorenz/stringify-key#limitations) for more information.
 
+### Using replpad with Vim
+
+- in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
+- in case you are using terminal vim, autoread is not working great, so you should add the
+  [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
+  vim configuration
+
 ## Configuring replpad
 
 `replpad` is fully configurable. 
@@ -148,10 +165,9 @@ Reading the comments in that file should give you enough information to tweak it
 ## Roadmap
 
 - more vim bindings
+- only pipe part of a file enclosed by `start/stop` comments
+- jsdoc support
+- highlight matching paren/brace/bracket/quote
+- pause/resume feeding files via command
+- list an object's properties by type (i.e. `Function`, `Object`, `String`)
 
-## Using replpad with Vim
-
-- in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
-- in case you are using terminal vim, autoread is not working great, so you should add the
-  [WatchFile](http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally) script to your
-  vim configuration
