@@ -1,18 +1,20 @@
 # replpad [![build status](https://secure.travis-ci.org/thlorenz/replpad.png)](http://next.travis-ci.org/thlorenz/replpad)
 
-Watches files in specified directory and all subdirectories and pipes them to a node repl whenever they change. Adds lots of extra
-functionality to the nodejs repl.
+Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.
+
+Adds keymaps, doc access, vim binding and maps and prints highlighted source of functions right in the repl.
+
+![tty](https://github.com/thlorenz/replpad/raw/master/assets/tty.jpg)
 
 ## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
 - **highlights source code**, i.e. `require('fs').readFile.src`
+- **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e. `fs.readdir.dox()`
 - **adds commands and keyboard shortcuts** 
 - **vim key bindings**
 - **key map support**
 - **appends code entered in repl back to file** via keyboard shortcut or `.append` command
-- **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e.
-  `fs.readdir.dox()`
 - **adjusts `__filename`, `__dirname` and `require`** to work for the file that is being sourced 
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
 - exposes `module.exports` of last sourced file as `$`
