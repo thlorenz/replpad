@@ -3,7 +3,14 @@
 var resolve =  require('./resolve')
   , log     =  require('../lib/log')
   , vimrli  =  require('../lib/vim-rli')
+  , current =  require('./current')
   ; 
+
+function initializeCurrent(conf) {
+  Object.keys(conf).forEach(function (k) {
+    current[k] = conf[k];  
+  });
+}
 
 module.exports = function (cb) {
   /*
@@ -15,6 +22,8 @@ module.exports = function (cb) {
    *  4. we finish by applying the config
    */
   resolve(function (config) {
+    initializeCurrent(config);
+
     function applyConfig(repl) {
       var vim = vimrli.vim;
       if (config.map) {
