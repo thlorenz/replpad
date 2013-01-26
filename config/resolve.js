@@ -6,6 +6,7 @@ var mkdirp =  require('mkdirp')
   , paths  =  require('./paths')
   , utl    =  require('../lib/utl')
   , log    =  require('../lib/log')
+  , colors =  require('ansicolors')
   ;
 
 module.exports = function (cb) {
@@ -27,7 +28,7 @@ module.exports = function (cb) {
 
     // Guard against errors in customized config file
     try {
-      log.infoln('Loading replpad config from: ', paths.configFile);
+      log.print(colors.yellow('\nLoading replpad config from: %s\n'), paths.configFile);
       cb(require(paths.configFile));
     } catch(e) {
       log.error('Sorry, it looks like you have an error in your config file at: ', paths.configFile);
