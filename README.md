@@ -141,6 +141,8 @@ $repl.imap('ctrl-t', 'esc');
 $repl.nmap('u', 'ctrl-l');
 ```
 
+You can list all registered mappings via: `$repl.maps`.
+
 These are handled by [readline-vim](https://github.com/thlorenz/readline-vim), so in order to learn more please read
 [this section](https://github.com/thlorenz/readline-vim#mappings).
 
