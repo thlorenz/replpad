@@ -2,8 +2,8 @@
 
 var resolve =  require('./resolve')
   , log     =  require('../lib/log')
-  , vimrli  =  require('../lib/vim-rli')
   , current =  require('./current')
+  , inspect =  require('../lib/utl').inspect
   ; 
 
 function override(prop, overridee, overrider) {
@@ -27,6 +27,35 @@ function initializeCurrent(conf) {
     .forEach(function (k) { current[k] = conf[k]; });
 }
 
+function disabled(config, plugin) {
+  if (!config.plugins) return false;
+
+  var val = config.plugins[plugin];
+  return val !== undefined && val !== true;
+} 
+
+function initVim(config, repl) {
+  if (disabled(config, 'vim')) return;
+
+  var vim = require('../lib/vim-rli')(repl);
+  repl.imap = vim.map.insert;
+  repl.nmap = vim.map.normal;
+  repl.__defineGetter__('maps', function () { log.println(inspect(vim.map.mappings)); });
+
+  if (config.map) {
+    if (typeof config.map !== 'function')
+      log.errorln('Found "map" in config, but it is a [%s]. It needs to be a function (ignoring for now).', typeof config.map);
+    else 
+      config.map(vim.map.normal, vim.map.insert);
+  }
+}
+
+function initMatchToken(config, repl) {
+  if (disabled(config, 'matchtoken')) return;
+
+  require('readline-matchtoken')(repl.rli);
+}
+
 module.exports = function (cb) {
   /*
    * A bit messy, but works as follows:
@@ -40,13 +69,8 @@ module.exports = function (cb) {
     initializeCurrent(config);
 
     function applyConfig(repl) {
-      var vim = vimrli.vim;
-      if (config.map) {
-        if (typeof config.map !== 'function')
-          log.errorln('Found "map" in config, but it is a [%s]. It needs to be a function (ignoring for now).', typeof config.map);
-        else 
-          config.map(vim.map.normal, vim.map.insert);
-      }
+      initVim(config, repl);
+      initMatchToken(config, repl);
     }
 
     cb(applyConfig);
