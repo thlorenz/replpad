@@ -14,6 +14,7 @@ Adds keymaps, doc access, vim binding and maps and prints highlighted source of 
 - **adds commands and keyboard shortcuts** 
 - **vim key bindings**
 - **key map support**
+- **parens matching** via match token plugin
 - **appends code entered in repl back to file** via keyboard shortcut or `.append` command
 - **adjusts `__filename`, `__dirname` and `require`** to work for the file that is being sourced 
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
