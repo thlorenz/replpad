@@ -88,6 +88,7 @@ exports.prompt = 'pad > ';
 /**
   * Enable plugins by setting them true, disable them by setting them false.
   * Plugins that are not set to true|false are included by default (for backwards compat)
+  * Removing this entire section enables all plugins.
   * @name plugins
   */
 exports.plugins = {
