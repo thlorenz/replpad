@@ -81,6 +81,19 @@ exports.highlight = false;
 /**
  * Set the repl prompt
  * Can be set in repl via: $repl.prompt = 'your prompt'
- * @name 
+ * @name prompt
  */
 exports.prompt = 'pad > ';
+
+/**
+  * Enable plugins by setting them true, disable them by setting them false.
+  * Plugins that are not set to true|false are included by default (for backwards compat)
+  * @name plugins
+  */
+exports.plugins = {
+    // adds vim key bindings and maps to the repl
+    vim: true
+
+    // jumps cursor to matching brace, bracket, paren and quote when it is entered
+  , matchtoken: true 
+};
