@@ -33,7 +33,8 @@
     "ansistyles": "~0.1.0",
     "request": "~2.12.0",
     "mkdirp": "~0.3.4",
-    "readline-vim": "~0.2.1"
+    "readline-vim": "~0.2.1",
+    "readline-matchtoken": "~0.1.0"
   },
   "devDependencies": {
     "trap": "~0.3.2"
