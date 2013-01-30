@@ -31,12 +31,12 @@ features are shown)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Smart Append](#smart-append)
 - [Plugins ](#plugins)
-  - [Vim](#vim)
-    - [Vim Bindings](#vim-bindings)
-    - [Vim like key maps](#vim-like-key-maps)
-    - [Limitations](#limitations)
-  - [match token](#match-token)
-  - [Using replpad with the Vim Editor](#using-replpad-with-the-vim-editor)
+    - [Vim](#vim)
+        - [Vim Bindings](#vim-bindings)
+        - [Vim like key maps](#vim-like-key-maps)
+        - [Limitations](#limitations)
+    - [match token](#match-token)
+- [Using replpad with the Vim Editor](#using-replpad-with-the-vim-editor)
 - [Configuring replpad](#configuring-replpad)
 - [Roadmap](#roadmap)
 
@@ -171,7 +171,7 @@ somewhat better.
 If enabled, it will match parens, braces, brackets and quotes by jumping the cursor to the matching token [emacs
 style](http://www.delorie.com/gnu/docs/emacs/emacs_284.html).
 
-### Using replpad with the Vim Editor
+## Using replpad with the Vim Editor
 
 - in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
 - in case you are using terminal vim, autoread is not working great, so you should add the
