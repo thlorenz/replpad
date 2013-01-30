@@ -26,15 +26,17 @@ features are shown)
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
 - [Installation](#installation)
-- [Usage](#usage) 
+- [Usage](#usage)
 - [Commands](#commands)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Smart Append](#smart-append)
-- [Vim](#vim)
-  - [Vim Bindings](#vim-bindings)
-  - [Vim like key maps](#vim-like-key-maps)
-    -[Limitations](#limitations)
-  - [Using replpad with Vim](#using-replpad-with-vim)
+- [Plugins ](#plugins)
+  - [Vim](#vim)
+    - [Vim Bindings](#vim-bindings)
+    - [Vim like key maps](#vim-like-key-maps)
+    - [Limitations](#limitations)
+  - [match token](#match-token)
+  - [Using replpad with the Vim Editor](#using-replpad-with-the-vim-editor)
 - [Configuring replpad](#configuring-replpad)
 - [Roadmap](#roadmap)
 
@@ -120,15 +122,22 @@ makes more sense than appending just `}` for instance.
 
 Additionally the code is reformatted with 2 space indents.
 
-## Vim
+## Plugins 
 
-### Vim Bindings
+Plugins can be enabled/disabled in the lower portion of the replpad config file
+([default](https://github.com/thlorenz/replpad/blob/master/config/default-config.js).
 
-A subset of vim bindings are added to `replpad` via [readline-vim](https://github.com/thlorenz/readline-vim).
+The following plugins are available.
+
+### Vim
+
+#### Vim Bindings
+
+If enabled, a subset of vim bindings are added to `replpad` via [readline-vim](https://github.com/thlorenz/readline-vim).
 
 Consult its readme for [available vim bindings](https://github.com/thlorenz/readline-vim#vim-bindings).
 
-### Vim like key maps
+#### Vim like key maps
 
 `replpad` allows you to specify keymaps. 
 
@@ -157,7 +166,12 @@ section](https://github.com/thlorenz/stringify-key#limitations) for more informa
 In general I found that only a few mappings in `normal` mode have the desired effect. In `insert` mode things are
 somewhat better.
 
-### Using replpad with Vim
+### match token
+
+If enabled, it will match parens, braces, brackets and quotes by jumping the cursor to the matching token [emacs
+style](http://www.delorie.com/gnu/docs/emacs/emacs_284.html).
+
+### Using replpad with the Vim Editor
 
 - in order to auto update your file whenever you append a repl line to it, you need to `:set autoread`
 - in case you are using terminal vim, autoread is not working great, so you should add the
