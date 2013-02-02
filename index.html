@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>replpad by thlorenz</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>replpad</h1>
+        <p>Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/thlorenz/replpad" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/thlorenz/replpad/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/thlorenz/replpad/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>replpad <a href="http://next.travis-ci.org/thlorenz/replpad"><img src="https://secure.travis-ci.org/thlorenz/replpad.png" alt="build status"></a>
+</h1>
+
+<p>Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.</p>
+
+<p>Adds keymaps, doc access, vim binding and maps and prints highlighted source of functions right in the repl.</p>
+
+<p><img src="https://github.com/thlorenz/replpad/raw/master/assets/tty.jpg" alt="tty"></p>
+
+<h2>Features</h2>
+
+<ul>
+<li>
+<strong>watches all <code>*.js</code> files</strong> inside <code>root</code> and all subdirectories and sources a file to the repl once it changes</li>
+<li>
+<strong>highlights source code</strong>, i.e. <code>require('fs').readFile.src</code>
+</li>
+<li>
+<strong>access core module docs in the repl</strong> via the <code>dox()</code> function that is added to every core function, i.e. <code>fs.readdir.dox()</code>
+</li>
+<li>
+<strong>adds commands and keyboard shortcuts</strong> </li>
+<li><strong>vim key bindings</strong></li>
+<li><strong>key map support</strong></li>
+<li>
+<strong>parens matching</strong> via match token plugin</li>
+<li>
+<strong>appends code entered in repl back to file</strong> via keyboard shortcut or <code>.append</code> command</li>
+<li>
+<strong>adjusts <code>__filename</code>, <code>__dirname</code> and <code>require</code></strong> to work for the file that is being sourced </li>
+<li>ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it</li>
+<li>exposes <code>module.exports</code> of last sourced file as <code>$</code>
+</li>
+<li>exposes the underlying repl as <code>$repl</code> in order to allow further customizations</li>
+</ul><p>Check out this <a href="http://youtu.be/AuGPd-AAl-8">demo</a> to get an idea about what it is capable of. (only a subset of
+features are shown)</p>
+
+<p><strong>Table of Contents</strong>  <em>generated with <a href="http://doctoc.herokuapp.com/">DocToc</a></em></p>
+
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li><a href="#smart-append">Smart Append</a></li>
+<li>
+<a href="#plugins">Plugins </a>
+
+<ul>
+<li>
+<a href="#vim">Vim</a>
+
+<ul>
+<li><a href="#vim-bindings">Vim Bindings</a></li>
+<li><a href="#vim-like-key-maps">Vim like key maps</a></li>
+<li><a href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li><a href="#match-token">match token</a></li>
+</ul>
+</li>
+<li><a href="#using-replpad-with-the-vim-editor">Using replpad with the Vim Editor</a></li>
+<li><a href="#configuring-replpad">Configuring replpad</a></li>
+<li><a href="#roadmap">Roadmap</a></li>
+</ul><h2>Installation</h2>
+
+<pre><code>npm install -g replpad
+</code></pre>
+
+<h2>Usage</h2>
+
+<pre><code>replpad [path/to/root]
+</code></pre>
+
+<p>If <code>path/to/root</code> is omitted then no files are watched.</p>
+
+<p><strong>Example:</strong> <code>replpad .</code> watches current directory and all sub directories.</p>
+
+<h2>Commands</h2>
+
+<p>Some commands were added to the built in <code>repl</code> commands. Here is a list of all of them:</p>
+
+<pre><code>pad &gt; .help
+.append         Appends the last entered parsable chunk of code or the last line to the last file that was sourced in the repl
+
+.clear          Break, and also clear the local context
+
+.compact        [on] Toggles if code is compacted before being sourced to the repl
+
+.depth          [2] Sets the depth to which an object is traversed when printed to the repl
+
+.exit           Exit the repl
+
+.help           Show this list of repl commands
+
+.hidden         [off] Set whether hidden properties are included during traversal of an object that is printed to the repl
+
+.highlight      [off] Toggles if syntax highlighted code is printed to the repl before being sourced
+
+.load           Load JS from a file into the REPL session
+
+.save           Save all evaluated commands in this REPL session to a file
+</code></pre>
+
+<p><strong>Note:</strong> commands that toggle a setting like <code>.compact</code> take a second parameter: <code>on|off</code>. If it is ommitted the state
+is toggled, i.e if it was <code>on</code> it is turned <code>off</code> and vice versa.</p>
+
+<p><strong>Note:</strong> when code is syntax highlighted, it is still followed by the compacted code which is necessary in order to
+have the repl evaluate it.</p>
+
+<p>You can add commands to the repl in real time via <code>$repl.defineCommand</code></p>
+
+<div class="highlight"><pre><span class="nx">$repl</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'sayhi'</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="nx">help</span><span class="o">:</span> <span class="s1">'Says hi via .sayhi'</span>
+  <span class="p">,</span> <span class="nx">action</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hi!'</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+
+<h2>Keyboard Shortcuts</h2>
+
+<ul>
+<li>
+<code>Ctrl-L</code> clears the terminal</li>
+<li>
+<code>Ctrl-D</code> exits replpad</li>
+<li>
+<code>Ctrl-A</code> Appends the <strong>last entered</strong> parsable chunk of code or the last line to the <strong>last file</strong> that was sourced in the repl.</li>
+</ul><h2>Smart Append</h2>
+
+<p>When the <code>.append</code> command or the append keyboard shortcut is executed, <code>replpad</code> will attempt to find a parsable chunk
+of code to append. If the last line is parsable or no parsable chunk is found, it will append the last line.</p>
+
+<p><strong>Example:</strong></p>
+
+<p>Assume we entered:</p>
+
+<div class="highlight"><pre><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The first valid JavaScript are the last 4 lines combined. Therefore the entire function <code>foo</code> will be appended. This is
+makes more sense than appending just <code>}</code> for instance.</p>
+
+<p>Additionally the code is reformatted with 2 space indents.</p>
+
+<h2>Plugins</h2>
+
+<p>Plugins can be enabled/disabled in the lower portion of the replpad config file
+(<a href="https://github.com/thlorenz/replpad/blob/master/config/default-config.js">default</a>.</p>
+
+<p>The following plugins are available.</p>
+
+<h3>Vim</h3>
+
+<h4>Vim Bindings</h4>
+
+<p>If enabled, a subset of vim bindings are added to <code>replpad</code> via <a href="https://github.com/thlorenz/readline-vim">readline-vim</a>.</p>
+
+<p>Consult its readme for <a href="https://github.com/thlorenz/readline-vim#vim-bindings">available vim bindings</a>.</p>
+
+<h4>Vim like key maps</h4>
+
+<p><code>replpad</code> allows you to specify keymaps. </p>
+
+<p><code>imap</code> is used to map keys in <strong>insert</strong> mode and <code>nmap</code> to map keys in <strong>normal</strong> mode.</p>
+
+<div class="highlight"><pre><span class="c1">// map 'ctrl-t' to 'esc', allowing to switch to normal mode via 'ctrl-t'</span>
+<span class="nx">$repl</span><span class="p">.</span><span class="nx">imap</span><span class="p">(</span><span class="s1">'ctrl-t'</span><span class="p">,</span> <span class="s1">'esc'</span><span class="p">);</span> 
+
+<span class="c1">// go forward in history via 'ctrl-space' in normal mode</span>
+<span class="nx">$repl</span><span class="p">.</span><span class="nx">nmap</span><span class="p">(</span><span class="s1">'ctrl-space'</span><span class="p">,</span> <span class="s1">'j'</span><span class="p">)</span>
+</pre></div>
+
+<p>You can list all registered mappings via: <code>$repl.maps</code>.</p>
+
+<p>These are handled by <a href="https://github.com/thlorenz/readline-vim">readline-vim</a>, so in order to learn more please read
+<a href="https://github.com/thlorenz/readline-vim#mappings">this section</a>.</p>
+
+<p>You can also declare mappings to be applied at startup by including them inside the map section of your config file as
+explained in <a href="#configuring-replpad">configuring replpad</a>.</p>
+
+<h4>Limitations</h4>
+
+<p>Mappings are limited by what the underlying nodejs <code>readline</code> supports. Consult <a href="https://github.com/thlorenz/stringify-key#limitations">this
+section</a> for more information.</p>
+
+<p>In general I found that only a few mappings in <code>normal</code> mode have the desired effect. In <code>insert</code> mode things are
+somewhat better.</p>
+
+<h3>match token</h3>
+
+<p>If enabled, it will match parens, braces, brackets and quotes by jumping the cursor to the matching token <a href="http://www.delorie.com/gnu/docs/emacs/emacs_284.html">emacs
+style</a>.</p>
+
+<h2>Using replpad with the Vim Editor</h2>
+
+<ul>
+<li>in order to auto update your file whenever you append a repl line to it, you need to <code>:set autoread</code>
+</li>
+<li>in case you are using terminal vim, autoread is not working great, so you should add the
+<a href="http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally">WatchFile</a> script to your
+vim configuration</li>
+</ul><h2>Configuring replpad</h2>
+
+<p><code>replpad</code> is fully configurable. </p>
+
+<p>When launched for the first time it creates a config file at <code>~/.config/replpad/config.js</code>. Initially this is a copy of
+the <a href="https://github.com/thlorenz/replpad/blob/master/config/default-config.js">default-config</a>, but you can edit it to
+change these defaults.</p>
+
+<p>Reading the comments in that file should give you enough information to tweak it.</p>
+
+<h2>Roadmap</h2>
+
+<ul>
+<li>more vim bindings</li>
+<li>only pipe part of a file enclosed by <code>start/stop</code> comments</li>
+<li>jsdoc support</li>
+<li>highlight matching paren/brace/bracket/quote</li>
+<li>pause/resume feeding files via command</li>
+<li>list an object's properties by type (i.e. <code>Function</code>, <code>Object</code>, <code>String</code>)</li>
+</ul>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/thlorenz">thlorenz</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-32151587-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
