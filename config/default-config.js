@@ -37,7 +37,7 @@ exports.feed = {
       , escapeless  :  false
       , compact     :  true
       , parentheses :  false
-      , semicolons  :  false
+      , semicolons  :  true
     }
 
     /**
