@@ -6,6 +6,8 @@ Adds keymaps, doc access, vim binding and maps and prints highlighted source of 
 
 ![tty](https://github.com/thlorenz/replpad/raw/master/assets/tty.jpg)
 
+<iframe width="840" height="520" src="http://www.youtube.com/embed/sRZkX9pBDh0?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
+
 ## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
@@ -20,9 +22,6 @@ Adds keymaps, doc access, vim binding and maps and prints highlighted source of 
 - ensures sourced code is parsable on a line by line basis before sending to repl by rewriting it
 - exposes `module.exports` of last sourced file as `$`
 - exposes the underlying repl as `$repl` in order to allow further customizations
-
-Check out this [demo](http://youtu.be/AuGPd-AAl-8) to get an idea about what it is capable of. (only a subset of
-features are shown)
 
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
