@@ -6,7 +6,7 @@ Adds keymaps, doc access, vim binding and maps and prints highlighted source of 
 
 ![tty](https://github.com/thlorenz/replpad/raw/master/assets/tty.jpg)
 
-<iframe width="840" height="520" src="http://www.youtube.com/embed/sRZkX9pBDh0?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
+Check out the [replpad home page](http://thlorenz.github.com/replpad/) for demos and tutorials.
 
 ## Features
 
