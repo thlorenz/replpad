@@ -513,7 +513,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #333;
-  margin: 0 0 10px;
+  margin: 20px 0 10px 0;
 }
 
 p, ul, ol, table, pre, dl {
@@ -525,7 +525,7 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 38px;
 }
 
 h2 {
@@ -691,7 +691,7 @@ header p {
   left: 0;
   right: 50%;
   height: 50px;
-  margin-right: -382px;
+  margin-right: -578px;
   position: fixed;
   top: 115px;
   background: #ffcc00;
