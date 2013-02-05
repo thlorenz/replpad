@@ -16,13 +16,25 @@ var repl            =  require('repl')
   , plugAppend      =  require('./lib/plugins/append')
   , plugCommands    =  require('./lib/plugins/commands')
   , plugSrc         =  require('./lib/plugins/src')
+  , plugPrompt      =  require('./lib/plugins/prompt')
   , stdin           =  process.stdin
   , stdout          =  process.stdout
   ;
 
+function initPlugins(repl) {
+
+  plugClearScreen(repl);
+  plugExit(repl);
+  plugAppend(repl);
+  plugCommands(repl);
+  plugSrc(repl);
+
+  plugPrompt(repl);
+}
+
 function createRepl(stdin) {
   var r = repl.start({
-        prompt          :  config.prompt || 'pad > '
+        prompt          :  'pad > '
       , input           :  stdin 
       , output          :  stdout
       , ignoreUndefined :  true
@@ -33,12 +45,6 @@ function createRepl(stdin) {
 
   // fs gets loaded by repl automatically
   core(r, [ { request: 'fs', module: require('fs') }]);
-
-  plugClearScreen(r);
-  plugExit(r);
-  plugAppend(r);
-  plugCommands(r);
-  plugSrc(r);
 
   r.state = state;
   r.config = config;
@@ -77,6 +83,8 @@ module.exports = function repreprep(root) {
 
       // finish initializing the config
       applyConfig(r);
+
+      initPlugins(r);
 
       // return repl here since feedEdits needs it
       return r;
