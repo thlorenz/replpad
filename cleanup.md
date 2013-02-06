@@ -1,7 +1,6 @@
 # Refactor
 
 - prompt and vimrli need to work together better, i.e. vim-rli is only there if vim plugin is used
-- plugins in general are not really plugins
 - config needs to get a version
 - things like repl, vimrli, etc., should be considered part of the app state and be requireable instead of being passed
   around

@@ -12,7 +12,7 @@ var repl            =  require('repl')
   , core            =  require('./lib/dox/core')
   , log             =  require('./lib/log')
   , instructions    =  require('./lib/instructions')
-  , initPlugins     =  require('./lib/plugins/init')
+  , initBuiltins    =  require('./lib/builtins/init')
   , stdin           =  process.stdin
   , stdout          =  process.stdout
   ;
@@ -65,7 +65,7 @@ function boot(stdin) {
 
   applyConfig(repl);
 
-  initPlugins(repl);
+  initBuiltins(repl);
     
   return repl;
 }
