@@ -7,6 +7,7 @@ var repl            =  require('repl')
   , config          =  require('./config/current')
   , initConfig      =  require('./config/init')
   , applyConfig     =  require('./config/apply')
+  , initWatcher     =  require('./lib/watcher-init')
   , feedEdits       =  require('./lib/feedEdits')
   , core            =  require('./lib/dox/core')
   , log             =  require('./lib/log')
@@ -60,23 +61,31 @@ function createRepl(stdin) {
 
 module.exports = function repreprep(root) {
 
-  initConfig();
-
   function boot(stdin) {
-    var repl = createRepl(stdin);
-
     instructions();
+
+    var repl = createRepl(stdin);
 
     applyConfig(repl);
 
     initPlugins(repl);
+
+    repl.displayPrompt();
+     
+    return repl;
   }
+
+  initConfig();
 
   if (!root) { 
     log.print('Watching no files since no path was specified.');
     return boot(stdin);
   }
 
-
-  feedEdits(stdin, stdout, root, boot);
+  var watcher = initWatcher(root);
+  watcher.on('initialized', function () {
+    var repl = boot(stdin)
+      , feed = feedEdits(stdin, stdout, repl);
+    watcher.on('file-changed', feed);
+  });
 };

@@ -1,7 +1,7 @@
 'use strict';
 
-var log    =  require('../lib/log')
-  , config =  require('./current')
+var log     =  require('../lib/log')
+  , config  =  require('./current')
   , inspect =  require('../lib/utl').inspect
   ;
 
