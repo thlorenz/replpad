@@ -56,7 +56,7 @@ function initMatchToken(config, repl) {
   require('readline-matchtoken')(repl.rli);
 }
 
-module.exports = function (cb) {
+module.exports = function () {
   /*
    * A bit messy, but works as follows:
    *  1. resolve the config
@@ -65,14 +65,14 @@ module.exports = function (cb) {
    *      - at this point the vimrli has also been initialized
    *  4. we finish by applying the config
    */
-  resolve(function (config) {
-    initializeCurrent(config);
 
-    function applyConfig(repl) {
-      initVim(config, repl);
-      initMatchToken(config, repl);
-    }
+  var config = resolve();
 
-    cb(applyConfig);
-  });
+  initializeCurrent(config);
+
+  function applyConfig(repl) {
+    initVim(config, repl);
+    initMatchToken(config, repl);
+  }
+  return applyConfig;
 };
