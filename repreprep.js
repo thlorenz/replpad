@@ -11,26 +11,10 @@ var repl            =  require('repl')
   , core            =  require('./lib/dox/core')
   , log             =  require('./lib/log')
   , instructions    =  require('./lib/instructions')
-  , plugClearScreen =  require('./lib/plugins/clear-screen')
-  , plugExit        =  require('./lib/plugins/exit')
-  , plugAppend      =  require('./lib/plugins/append')
-  , plugCommands    =  require('./lib/plugins/commands')
-  , plugSrc         =  require('./lib/plugins/src')
-  , plugPrompt      =  require('./lib/plugins/prompt')
+  , initPlugins     =  require('./lib/plugins/init')
   , stdin           =  process.stdin
   , stdout          =  process.stdout
   ;
-
-function initPlugins(repl) {
-
-  plugClearScreen(repl);
-  plugExit(repl);
-  plugAppend(repl);
-  plugCommands(repl);
-  plugSrc(repl);
-
-  plugPrompt(repl);
-}
 
 function createRepl(stdin) {
   var r = repl.start({
