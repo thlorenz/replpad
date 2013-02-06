@@ -55,25 +55,23 @@ function createRepl(stdin) {
     }
   };
 
-  // Fire and forget (we just need to make sure it gets configured)
   return r;
 }
 
+function boot(stdin) {
+  instructions();
+
+  var repl = createRepl(stdin);
+
+  applyConfig(repl);
+
+  initPlugins(repl);
+    
+  return repl;
+}
+
+
 module.exports = function repreprep(root) {
-
-  function boot(stdin) {
-    instructions();
-
-    var repl = createRepl(stdin);
-
-    applyConfig(repl);
-
-    initPlugins(repl);
-
-    repl.displayPrompt();
-     
-    return repl;
-  }
 
   initConfig();
 
@@ -85,7 +83,7 @@ module.exports = function repreprep(root) {
   var watcher = initWatcher(root);
   watcher.on('initialized', function () {
     var repl = boot(stdin)
-      , feed = feedEdits(stdin, stdout, repl);
-    watcher.on('file-changed', feed);
+      , feedEdit = feedEdits(stdin, stdout, repl);
+    watcher.on('file-changed', feedEdit);
   });
 };
