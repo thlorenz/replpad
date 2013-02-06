@@ -1,7 +1,6 @@
 'use strict';
 
 var resolve =  require('./resolve')
-  , log     =  require('../lib/log')
   , current =  require('./current')
   ; 
 

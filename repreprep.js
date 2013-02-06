@@ -6,7 +6,7 @@ var repl            =  require('repl')
   , state           =  require('./lib/state')
   , config          =  require('./config/current')
   , initConfig      =  require('./config/init')
-  , applyConfig     =  require('./config/apply')
+  , managePlugins   =  require('./lib/manage-plugins')
   , initWatcher     =  require('./lib/watcher-init')
   , feedEdits       =  require('./lib/feedEdits')
   , core            =  require('./lib/dox/core')
@@ -62,12 +62,10 @@ function boot(stdin) {
   instructions();
 
   var repl = createRepl(stdin);
+  state.__defineGetter__('repl', function () { return repl; });
 
-  applyConfig(repl);
-
-  initBuiltins(repl);
-    
-  return repl;
+  managePlugins();
+  initBuiltins();
 }
 
 
@@ -82,8 +80,8 @@ module.exports = function repreprep(root) {
 
   var watcher = initWatcher(root);
   watcher.on('initialized', function () {
-    var repl = boot(stdin)
-      , feedEdit = feedEdits(stdin, stdout, repl);
+    boot(stdin);
+    var feedEdit = feedEdits(stdin, stdout);
     watcher.on('file-changed', feedEdit);
   });
 };
