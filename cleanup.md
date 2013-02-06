@@ -1,20 +1,12 @@
 # Refactor
 
-- resolve/init config needs to be sync to get rid of confusing initialization flow
 - prompt and vimrli need to work together better, i.e. vim-rli is only there if vim plugin is used
 - plugins in general are not really plugins
 - config needs to get a version
-- file watcher startup needs to be better organized (only real async op I cannot get around)
-- possibly shouldn't live in feedEdits
 - things like repl, vimrli, etc., should be considered part of the app state and be requireable instead of being passed
   around
 - in order for this to work, we need to get into a fully initialized state before activateing anything that depends on
   those
-
-# Remove
-
-- keycodes
-- alias-key
 
 # Test
 
