@@ -3,7 +3,6 @@
 var resolve =  require('./resolve')
   , log     =  require('../lib/log')
   , current =  require('./current')
-  , inspect =  require('../lib/utl').inspect
   ; 
 
 function override(prop, overridee, overrider) {
@@ -27,52 +26,8 @@ function initializeCurrent(conf) {
     .forEach(function (k) { current[k] = conf[k]; });
 }
 
-function disabled(config, plugin) {
-  if (!config.plugins) return false;
-
-  var val = config.plugins[plugin];
-  return val !== undefined && val !== true;
-} 
-
-function initVim(config, repl) {
-  if (disabled(config, 'vim')) return;
-
-  var vim = require('../lib/vim-rli')(repl);
-  repl.imap = vim.map.insert;
-  repl.nmap = vim.map.normal;
-  repl.__defineGetter__('maps', function () { log.println(inspect(vim.map.mappings)); });
-
-  if (config.map) {
-    if (typeof config.map !== 'function')
-      log.errorln('Found "map" in config, but it is a [%s]. It needs to be a function (ignoring for now).', typeof config.map);
-    else 
-      config.map(vim.map.normal, vim.map.insert);
-  }
-}
-
-function initMatchToken(config, repl) {
-  if (disabled(config, 'matchtoken')) return;
-
-  require('readline-matchtoken')(repl.rli);
-}
-
 module.exports = function () {
-  /*
-   * A bit messy, but works as follows:
-   *  1. resolve the config
-   *  2. tell repreprep that we have it
-   *  3. repreprep creates repl and calls apply config, passing the created repl
-   *      - at this point the vimrli has also been initialized
-   *  4. we finish by applying the config
-   */
-
   var config = resolve();
 
   initializeCurrent(config);
-
-  function applyConfig(repl) {
-    initVim(config, repl);
-    initMatchToken(config, repl);
-  }
-  return applyConfig;
 };

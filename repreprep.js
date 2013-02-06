@@ -1,5 +1,4 @@
 'use strict';
-/*jshint asi:true */
 
 var repl            =  require('repl')
   , cardinal        =  require('cardinal')
@@ -7,6 +6,7 @@ var repl            =  require('repl')
   , state           =  require('./lib/state')
   , config          =  require('./config/current')
   , initConfig      =  require('./config/init')
+  , applyConfig     =  require('./config/apply')
   , feedEdits       =  require('./lib/feedEdits')
   , core            =  require('./lib/dox/core')
   , log             =  require('./lib/log')
@@ -24,7 +24,7 @@ function createRepl(stdin) {
       , ignoreUndefined :  true
       , useColors       :  true
       , useGlobal       :  true
-      })
+      });
   log.repl = r;
 
   // fs gets loaded by repl automatically
@@ -52,7 +52,7 @@ function createRepl(stdin) {
     } catch (e) {
       return writer(s);
     }
-  }
+  };
 
   // Fire and forget (we just need to make sure it gets configured)
   return r;
@@ -60,13 +60,13 @@ function createRepl(stdin) {
 
 module.exports = function repreprep(root) {
 
-  var applyConfig = initConfig();
-  var repl = createRepl(stdin);
+  initConfig();
 
   function boot(stdin) {
+    var repl = createRepl(stdin);
+
     instructions();
 
-    // finish initializing the config
     applyConfig(repl);
 
     initPlugins(repl);
