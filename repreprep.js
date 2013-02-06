@@ -77,24 +77,22 @@ function createRepl(stdin) {
 module.exports = function repreprep(root) {
 
   var applyConfig = initConfig();
+  var repl = createRepl(stdin);
 
   function boot(stdin) {
     instructions();
-    var r = createRepl(stdin);
 
     // finish initializing the config
-    applyConfig(r);
+    applyConfig(repl);
 
-    initPlugins(r);
-
-    // return repl here since feedEdits needs it
-    return r;
+    initPlugins(repl);
   }
 
   if (!root) { 
     log.print('Watching no files since no path was specified.');
     return boot(stdin);
   }
+
 
   feedEdits(stdin, stdout, root, boot);
 };
