@@ -19,7 +19,7 @@ var repl            =  require('repl')
 
 function createRepl(stdin) {
   var r = repl.start({
-        prompt          :  'pad > '
+        prompt          :  config.prompt || 'pad > '
       , input           :  stdin 
       , output          :  stdout
       , ignoreUndefined :  true
