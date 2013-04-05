@@ -1,6 +1,13 @@
 'use strict';
 
 /**
+ * The replpad version for which this config was originally created.
+ * Important when upgrading replpad.
+ * @name version
+ */
+exports.version = '0.6.0';
+
+/**
   * Declares vim like key mappings
   * @name map
   * @function
