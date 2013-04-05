@@ -35,7 +35,8 @@
     "mkdirp": "~0.3.4",
     "readline-vim": "~0.3.0",
     "readline-matchtoken": "~0.1.0",
-    "tap": "~0.4.1"
+    "tap": "~0.4.1",
+    "scriptie-talkie": "~0.1.1"
   },
   "devDependencies": {
     "trap": "~0.3.2"
