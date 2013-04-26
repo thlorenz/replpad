@@ -18,7 +18,8 @@
     "repl",
     "edit",
     "evaluate",
-    "debug"
+    "debug",
+    "scriptie-talkie"
   ],
   "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
   "license": "MIT",
@@ -35,10 +36,10 @@
     "mkdirp": "~0.3.4",
     "readline-vim": "~0.3.0",
     "readline-matchtoken": "~0.1.0",
-    "tap": "~0.4.1",
-    "scriptie-talkie": "~0.1.1"
+    "scriptie-talkie": "~0.4.3"
   },
   "devDependencies": {
+    "tap": "~0.4.1",
     "trap": "~0.3.2"
   }
 }

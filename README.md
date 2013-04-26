@@ -78,6 +78,8 @@ pad > .help
 .load           Load JS from a file into the REPL session
 
 .save           Save all evaluated commands in this REPL session to a file
+
+.talk           [off] Toggles whether the file content is evaluated with scriptie-talkie when it is piped to the repl
 ```
 
 **Note:** commands that toggle a setting like `.compact` take a second parameter: `on|off`. If it is ommitted the state
@@ -193,7 +195,6 @@ Reading the comments in that file should give you enough information to tweak it
 - more vim bindings
 - only pipe part of a file enclosed by `start/stop` comments
 - jsdoc support
-- highlight matching paren/brace/bracket/quote
 - pause/resume feeding files via command
 - list an object's properties by type (i.e. `Function`, `Object`, `String`)
 

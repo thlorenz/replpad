@@ -5,7 +5,7 @@
  * Important when upgrading replpad.
  * @name version
  */
-exports.version = '0.6.0';
+exports.version = '0.7';
 
 /**
   * Declares vim like key mappings
@@ -104,4 +104,21 @@ exports.plugins = {
 
     // jumps cursor to matching brace, bracket, paren and quote when it is entered
   , matchtoken: true 
+};
+
+/**
+ * Configure the scriptie talkie feature (activated via '.talk') which evaluates a script in chunks and prints
+ * intermediate results.
+ * @name scriptietalkie
+ */
+exports.scriptietalkie = {
+
+    // at what point is an object diff compacted to one line
+    joinLinesAt: 20
+
+    // at which length is an object diff line cut off with an ellipsis
+  , maxLineLength: 380
+
+    // set to true to activate scriptie talkie when replpad starts, you can toggle this setting via the '.talk' command
+  , active: false
 };
