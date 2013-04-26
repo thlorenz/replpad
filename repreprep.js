@@ -83,6 +83,5 @@ module.exports = function repreprep(root) {
     boot(stdin);
     var feedEdit = feedEdits(stdin, stdout);
     watcher.on('file-changed', feedEdit);
-    feedEdit({ fullPath: require.resolve('./sample') });
   });
 };
