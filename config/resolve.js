@@ -9,18 +9,24 @@ var mkdirp =  require('mkdirp')
   , colors =  require('ansicolors')
   ;
 
-module.exports = function (cb) {
+function loadFrom (p) {
+  log.print(colors.yellow('\nLoading replpad config from: %s\n'), p);
+  return require(p);
+}
+
+module.exports = function () {
   if (!utl.existsSync(paths.configFile)) {
 
     mkdirp.sync(path.dirname(paths.configFile));
 
     try {
       utl.copyFileSync(require.resolve('./default-config'), paths.configFile);
+      return loadFrom(paths.configFile);
     } catch (err) {
       log.error('Unable to create config file', err);
+      log.error('Unable to create config file', err.stack);
       log.infoln('Using default config');
-      cb(require('./default-config'));
-      return;
+      return require('./default-config');
     }
 
     log.print(colors.yellow('\nCreated replpad config at: %s\n'), paths.configFile);
@@ -28,8 +34,7 @@ module.exports = function (cb) {
 
     // Guard against errors in customized config file
     try {
-      log.print(colors.yellow('\nLoading replpad config from: %s\n'), paths.configFile);
-      return require(paths.configFile);
+      return loadFrom(paths.configFile);
     } catch(e) {
       log.error('Sorry, it looks like you have an error in your config file at: ', paths.configFile);
       log.error(e);
