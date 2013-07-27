@@ -1,6 +1,7 @@
 'use strict';
 
 var repl            =  require('repl')
+  , path            =  require('path')
   , cardinal        =  require('cardinal')
   , util            =  require('util')
   , state           =  require('./lib/state')
@@ -13,6 +14,7 @@ var repl            =  require('repl')
   , log             =  require('./lib/log')
   , instructions    =  require('./lib/instructions')
   , initBuiltins    =  require('./lib/builtins/init')
+  , findexquire     =  require('./lib/findexquire')
   , stdin           =  process.stdin
   , stdout          =  process.stdout
   ;
@@ -35,6 +37,7 @@ function createRepl(stdin) {
   r.config = config;
 
   global.$repl = r;
+  global.require = findexquire(path.join(process.cwd(), 'repl.js'), true);
 
   function writer(s) {
     return util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
