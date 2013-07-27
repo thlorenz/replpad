@@ -20,7 +20,7 @@ var repl            =  require('repl')
 function createRepl(stdin) {
   var r = repl.start({
         prompt          :  config.prompt || 'pad > '
-      , input           :  stdin 
+      , input           :  stdin
       , output          :  stdout
       , ignoreUndefined :  true
       , useColors       :  true
@@ -36,14 +36,14 @@ function createRepl(stdin) {
 
   global.$repl = r;
 
-  function writer(s) { 
+  function writer(s) {
     return util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
   }
 
-  r.writer = function (s) { 
+  r.writer = function (s) {
     if (typeof s !== 'string') return writer(s);
     if (!/^function /.test(s)) return writer(s);
-    try { 
+    try {
       // make anonymous functions parsable
       s = s.replace(/^function[ ]+\(/, 'function fn(');
 
@@ -73,7 +73,7 @@ module.exports = function repreprep(root) {
 
   initConfig();
 
-  if (!root) { 
+  if (!root) {
     log.print('Watching no files since no path was specified.');
     return boot(stdin);
   }
