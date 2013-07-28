@@ -15,20 +15,20 @@ test('\nwhen I findexquire escodegen', function (t) {
   var locs = findexquire.find(escodegen.generate);
   t.equal(locs.length, 0, 'does not find escodegen.generate right away')
 
-  setTimeout(waitNcontinue, 1500)
+  setTimeout(waitNcontinue, 2000)
 
   function waitNcontinue() {
     var generateLocs = findexquire.find(escodegen.generate);
     var consumerLocs = findexquire.find(sourcemap.SourceMapConsumer);
 
-    t.equal(generateLocs.length, 1, 'finds escodegen.generate after 1.5 seconds')
+    t.equal(generateLocs.length, 1, 'finds escodegen.generate after 2 seconds')
     t.notOk(consumerLocs, 'does not find sourcemap.SourceMapConsumer yet')
 
-    setTimeout(waitMoreNcontinue, 1000)
+    setTimeout(waitMoreNcontinue, 2000)
   }
 
   function waitMoreNcontinue () {
     var consumerLocs = findexquire.find(sourcemap.SourceMapConsumer);
-    t.equal(consumerLocs.length, 1, 'finds sourcemap.SourceMapConsumer after 1 more second')
+    t.equal(consumerLocs.length, 1, 'finds sourcemap.SourceMapConsumer after 1 more seconds')
   }
 })
