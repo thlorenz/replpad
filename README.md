@@ -11,7 +11,7 @@ Check out the [replpad home page](http://thlorenz.github.com/replpad/) for demos
 ## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
-- **highlights source code**, i.e. `require('fs').readFile.src`
+- **highlights source code** and **shows location of function definition**, i.e. `require('fs').readFile.src`
 - **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e. `fs.readdir.dox()`
 - **[scriptie-talkie](https://github.com/thlorenz/scriptie-talkie) support**  (see `.talk` command)
 - **adds commands and keyboard shortcuts** 
