@@ -2,6 +2,7 @@
 /*jshint asi: true */
 
 var test = require('tap').test
+var wire = require('../../lib/wire')
 var findexquire = require('../../lib/findexquire')
 process.env.REPLPAD_DEBUG = true;
 
@@ -15,20 +16,19 @@ test('\nwhen I findexquire escodegen', function (t) {
   var locs = findexquire.find(escodegen.generate);
   t.equal(locs.length, 0, 'does not find escodegen.generate right away')
 
-  setTimeout(waitNcontinue, 2000)
+  wire.on('findex-first-pass', onfirstpass);
+  wire.on('findex-second-pass', onsecondpass);
 
-  function waitNcontinue() {
+  function onfirstpass() {
     var generateLocs = findexquire.find(escodegen.generate);
     var consumerLocs = findexquire.find(sourcemap.SourceMapConsumer);
 
-    t.equal(generateLocs.length, 1, 'finds escodegen.generate after 2 seconds')
+    t.equal(generateLocs.length, 1, 'finds escodegen.generate after first pass')
     t.notOk(consumerLocs, 'does not find sourcemap.SourceMapConsumer yet')
-
-    setTimeout(waitMoreNcontinue, 2000)
   }
 
-  function waitMoreNcontinue () {
+  function onsecondpass () {
     var consumerLocs = findexquire.find(sourcemap.SourceMapConsumer);
-    t.equal(consumerLocs.length, 1, 'finds sourcemap.SourceMapConsumer after 1 more seconds')
+    t.equal(consumerLocs.length, 1, 'finds sourcemap.SourceMapConsumer after second pass')
   }
 })
