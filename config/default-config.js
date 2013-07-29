@@ -5,7 +5,7 @@
  * Important when upgrading replpad.
  * @name version
  */
-exports.version = '0.7';
+exports.version = '0.8';
 
 /**
   * Declares vim like key mappings
@@ -16,8 +16,8 @@ exports.version = '0.7';
   */
 exports.map = function (nmap, imap) {
 
-  // map 'jk' to 'esc' to switch to normal mode 
-  imap('jk', 'esc');        
+  // map 'jk' to 'esc' to switch to normal mode
+  imap('jk', 'esc');
 
   // navigate backward in history  via 'ctrl-k' in insert mode
   imap('ctrl-k', 'ctrl-p');
@@ -103,7 +103,7 @@ exports.plugins = {
     vim: true
 
     // jumps cursor to matching brace, bracket, paren and quote when it is entered
-  , matchtoken: true 
+  , matchtoken: true
 };
 
 /**
