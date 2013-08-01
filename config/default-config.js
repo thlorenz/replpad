@@ -5,7 +5,7 @@
  * Important when upgrading replpad.
  * @name version
  */
-exports.version = '0.8';
+exports.version = '0.9';
 
 /**
   * Declares vim like key mappings

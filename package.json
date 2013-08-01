@@ -1,7 +1,7 @@
 {
   "name": "replpad",
   "version": "0.8.2",
-  "description": "Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.",
+  "description": "Pipes content of files to a node repl whenever they change and adds many more features to enable a highly interactive coding experience.",
   "main": "repreprep.js",
   "bin": {
     "replpad": "./bin/replpad.js"
@@ -19,7 +19,11 @@
     "edit",
     "evaluate",
     "debug",
-    "scriptie-talkie"
+    "scriptie-talkie",
+    "jsdoc",
+    "source",
+    "doc",
+    "documentation"
   ],
   "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
   "license": "MIT",
