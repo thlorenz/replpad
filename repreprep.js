@@ -39,23 +39,8 @@ function createRepl(stdin) {
   global.$repl = r;
   global.require = findexquire(path.join(process.cwd(), 'repl.js'), true);
 
-  function writer(s) {
-    return util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
-  }
-
   r.writer = function (s) {
-    if (typeof s !== 'string') return writer(s);
-    if (!/^function /.test(s)) return writer(s);
-    try {
-      // make anonymous functions parsable
-      s = s.replace(/^function[ ]+\(/, 'function fn(');
-
-      var code = cardinal.highlight(s, { linenos: true });
-      r.outputStream.write(code);
-      return '';
-    } catch (e) {
-      return writer(s);
-    }
+    return util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
   };
 
   return r;
