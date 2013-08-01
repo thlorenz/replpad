@@ -28,9 +28,7 @@
     "esprima": "~1.0.2",
     "readdirp": "~0.2.2",
     "require-like": "~0.1.2",
-    "cardinal": "~0.3.1",
     "ansicolors": "~0.2.1",
-    "hermit": "~0.2.0",
     "ansistyles": "~0.1.0",
     "request": "~2.12.0",
     "mkdirp": "~0.3.4",
@@ -41,7 +39,9 @@
     "xtend": "~2.0.6",
     "scriptie-talkie": "~0.4.6",
     "findex": "~0.2.1",
-    "function-comment": "~0.1.0"
+    "function-comment": "~0.2.0",
+    "cardinal": "~0.4.2",
+    "hermit": "~0.2.2"
   },
   "devDependencies": {
     "tap": "~0.4.1"
