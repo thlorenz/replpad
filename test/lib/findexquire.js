@@ -4,7 +4,7 @@
 var test = require('tap').test
 var wire = require('../../lib/wire')
 var findexquire = require('../../lib/findexquire')
-process.env.REPLPAD_DEBUG = true;
+// process.env.REPLPAD_DEBUG = true;
 
 var sourcemap = require('escodegen/node_modules/source-map')
 
