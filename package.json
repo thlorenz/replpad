@@ -40,10 +40,10 @@
     "find-parent-dir": "~0.1.0",
     "xtend": "~2.0.6",
     "scriptie-talkie": "~0.4.6",
-    "findex": "~0.2.1"
+    "findex": "~0.2.1",
+    "function-comment": "~0.1.0"
   },
   "devDependencies": {
-    "tap": "~0.4.1",
-    "trap": "~0.3.2"
+    "tap": "~0.4.1"
   }
 }
