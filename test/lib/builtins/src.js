@@ -1,13 +1,30 @@
 'use strict';
 /*jshint asi: true */
 
-var test = require('tap').test
+var debug// =  true;
+var test  =  debug  ? function () {} : require('tap').test
+var test_ =  !debug ? function () {} : require('tap').test
+
+var path = require('path')
 var wire = require('../../../lib/wire')
+var format = require('util').format
 var findexquire = require('../../../lib/findexquire')(__filename, true)
 
 var output = ''
-var repl = { outputStream: { write: function (s) { output += s } } }
-require('../../../lib/builtins/src')(repl);
+var fixtures = path.join(__dirname, '..', '..', 'fixtures');
+
+(function stubThings () {
+  var repl = { 
+    outputStream: { 
+      write: function (s) { output += s } 
+    } 
+  }
+  require('../../../lib/builtins/src')(repl);
+
+  require('cardinal').highlight = function (src, opts) { 
+    return format('highlighted (linenos: %s firstline: %d\n%s', opts.linenos, opts.firstline, src);  
+  }
+})()
 
 function inspect(obj, depth) {
   console.log(require('util').inspect(obj, false, depth || 5, true));
@@ -19,13 +36,17 @@ var fnSameWithJsdoc      =  findexquire('../../fixtures/same-function-with-jsdoc
 var fnSameWithoutComment =  findexquire('../../fixtures/same-function-without-comment', true)
 
   
+// TODO: check first line for all tests
 test('\nwhen I require a module with a jsdoc and its code was indexed', function (t) {
   output = ''
   fnWithJsdoc.src;
   
-  t.equal(
-      output
-    , '\u001b[94mfunction\u001b[39m \u001b[37mdoingStuff\u001b[39m\u001b[90m(\u001b[39m\u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[33m{\u001b[39m\n  \u001b[31mreturn\u001b[39m \u001b[90m(\u001b[39m\u001b[37mc\u001b[39m \u001b[93m+\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[93m*\u001b[39m \u001b[37md\u001b[39m\n\u001b[33m}\u001b[39m'
+  t.deepEqual(
+      output.split('\n')
+    , [ 'highlighted (linenos: false firstline: NaN',
+        'function doingStuff(c, d) {',
+        '  return (c + d) * d',
+        '}' ]
     , 'src outputs the function without jsdoc or location'
   )
 
@@ -40,9 +61,22 @@ test('\nsrc writing of indexed functions', function (t) {
       output = ''
       fnWithJsdoc.src;
       
-      t.equal(
-          output
-        , '\u001b[90m 4: \u001b[90m/**\n\u001b[90m 5:  * Adds c to d and then multiplies the result with d.\n\u001b[90m 6:  * \n\u001b[90m 7:  * @name doingStuff\n\u001b[90m 8:  * @function\n\u001b[90m 9:  * @param c {Number}\n\u001b[90m10:  * @param d {Number}\n\u001b[90m11:  * @return {Number} overall result\n\u001b[90m12:  */\u001b[39m\n\u001b[90m13: \u001b[94mfunction\u001b[39m \u001b[37mdoingStuff\u001b[39m\u001b[90m(\u001b[39m\u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[33m{\u001b[39m\n\u001b[90m14:   \u001b[31mreturn\u001b[39m \u001b[90m(\u001b[39m\u001b[37mc\u001b[39m \u001b[93m+\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[93m*\u001b[39m \u001b[37md\u001b[39m\n\u001b[90m15: \u001b[33m}\u001b[39m\n\u001b[90m16: \u001b[90m// /Users/thlorenz/dev/js/projects/replpad/test/fixtures/function-with-jsdoc.js:12:17\u001b[39m'
+      t.deepEqual(
+          output.split('\n')
+        , [ 'highlighted (linenos: true firstline: 4',
+            '/**',
+            ' * Adds c to d and then multiplies the result with d.',
+            ' * ',
+            ' * @name doingStuff',
+            ' * @function',
+            ' * @param c {Number}',
+            ' * @param d {Number}',
+            ' * @return {Number} overall result',
+            ' */',
+            'function doingStuff(c, d) {',
+            '  return (c + d) * d',
+            '}',
+            '// ' + fixtures + '/function-with-jsdoc.js:12:17' ]
         , 'src outputs the function including jsdoc and location'
       )
 
@@ -53,9 +87,14 @@ test('\nsrc writing of indexed functions', function (t) {
       output = ''
       fnWithoutComment.src;
       
-      t.equal(
-          output
-        , '\u001b[90m1: \n\u001b[90m2: \u001b[94mfunction\u001b[39m \u001b[37mdoingOtherStuff\u001b[39m\u001b[90m(\u001b[39m\u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[33m{\u001b[39m\n\u001b[90m3:   \u001b[31mreturn\u001b[39m \u001b[90m(\u001b[39m\u001b[37mc\u001b[39m \u001b[93m+\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n\u001b[90m4: \u001b[33m}\u001b[39m\n\u001b[90m5: \u001b[90m// /Users/thlorenz/dev/js/projects/replpad/test/fixtures/function-without-comment.js:3:17\u001b[39m'
+      t.deepEqual(
+          output.split('\n')
+        , [ 'highlighted (linenos: true firstline: 0',
+            '',
+            'function doingOtherStuff(c, d) {',
+            '  return (c + d);',
+            '}',
+            '// ' + fixtures + '/function-without-comment.js:3:17' ]
         , 'src outputs the function including location'
       )
 
@@ -66,9 +105,14 @@ test('\nsrc writing of indexed functions', function (t) {
       output = ''
       fnSameWithJsdoc.src;
       
-      t.equal(
-          output
-        , '\u001b[94mfunction\u001b[39m \u001b[37mdoingStuff\u001b[39m\u001b[90m(\u001b[39m\u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[33m{\u001b[39m\n  \u001b[31mreturn\u001b[39m \u001b[34mconsole\u001b[39m\u001b[32m.\u001b[39m\u001b[34mlog\u001b[39m\u001b[90m(\u001b[39m\u001b[92m\'This exact function exists twice\'\u001b[39m\u001b[32m,\u001b[39m \u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n\u001b[33m}\u001b[39m\n\u001b[90m// /Users/thlorenz/dev/js/projects/replpad/test/fixtures/same-function-with-jsdoc.js:12:17\u001b[39m\n\u001b[90m// /Users/thlorenz/dev/js/projects/replpad/test/fixtures/same-function-without-comment.js:3:17\u001b[39m'
+      t.deepEqual(
+          output.split('\n')
+        , [ 'highlighted (linenos: false firstline: NaN',
+            'function doingStuff(c, d) {',
+            '  return console.log(\'This exact function exists twice\', c, d);',
+            '}',
+            '// ' + fixtures + '/same-function-with-jsdoc.js:12:17',
+            '// ' + fixtures + '/same-function-without-comment.js:3:17' ]
         , 'src outputs the function without jsdoc including both locations'
       )
 
@@ -79,9 +123,14 @@ test('\nsrc writing of indexed functions', function (t) {
       output = ''
       fnSameWithoutComment.src;
       
-      t.equal(
-          output
-        , '\u001b[94mfunction\u001b[39m \u001b[37mdoingStuff\u001b[39m\u001b[90m(\u001b[39m\u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m \u001b[33m{\u001b[39m\n  \u001b[31mreturn\u001b[39m \u001b[34mconsole\u001b[39m\u001b[32m.\u001b[39m\u001b[34mlog\u001b[39m\u001b[90m(\u001b[39m\u001b[92m\'This exact function exists twice\'\u001b[39m\u001b[32m,\u001b[39m \u001b[37mc\u001b[39m\u001b[32m,\u001b[39m \u001b[37md\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n\u001b[33m}\u001b[39m\n\u001b[90m// /Users/thlorenz/dev/js/projects/replpad/test/fixtures/same-function-with-jsdoc.js:12:17\u001b[39m\n\u001b[90m// /Users/thlorenz/dev/js/projects/replpad/test/fixtures/same-function-without-comment.js:3:17\u001b[39m'
+      t.deepEqual(
+          output.split('\n')
+        , [ 'highlighted (linenos: false firstline: NaN',
+            'function doingStuff(c, d) {',
+            '  return console.log(\'This exact function exists twice\', c, d);',
+            '}',
+            '// ' + fixtures + '/same-function-with-jsdoc.js:12:17',
+            '// ' + fixtures + '/same-function-without-comment.js:3:17' ]
         , 'src outputs the function including both locations'
       )
 
