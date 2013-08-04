@@ -1,7 +1,7 @@
 'use strict';
 /*jshint asi: true */
 
-var debug// =  true;
+var debug //=  true;
 var test  =  debug  ? function () {} : require('tap').test
 var test_ =  !debug ? function () {} : require('tap').test
 
@@ -16,7 +16,7 @@ var fixtures = path.join(__dirname, '..', '..', 'fixtures');
   require('../../../lib/builtins/src')();
 
   require('cardinal').highlight = function (src, opts) { 
-    return format('highlighted (linenos: %s firstline: %d\n%s', opts.linenos, opts.firstline, src);  
+    return 'highlighted\n' + src;
   }
 })()
 
@@ -26,19 +26,21 @@ var fnSameWithJsdoc      =  findexquire('../../fixtures/same-function-with-jsdoc
 var fnSameWithoutComment =  findexquire('../../fixtures/same-function-without-comment', true)
 
   
-// TODO: check first line for all tests
-test('\nwhen I require a module with a jsdoc and its code was indexed', function (t) {
-  var output = fnWithJsdoc.src.__replpad_print_raw__
+test('\nwhen I require a module with a jsdoc and its code was not indexed', function (t) {
+  var res = fnWithJsdoc.src
+  var output = res.__replpad_print_raw__
   
   t.deepEqual(
       output.split('\n')
-    , [ 'highlighted (linenos: false firstline: NaN',
+    , [ 'highlighted',
         'function doingStuff(c, d) {',
         '  return (c + d) * d',
         '}' ]
     , 'src outputs the function without jsdoc or location'
   )
 
+  t.deepEqual(res.lineInfo, { linenos: false, firstline: undefined });
+  
   t.end()
 })
 
@@ -47,11 +49,12 @@ test('\nsrc writing of indexed functions', function (t) {
   wire.on('findex-first-pass', function () {
     
     test('\nwhen I require a module with a jsdoc and its code was indexed', function (t) {
-      var output = fnWithJsdoc.src.__replpad_print_raw__;
+      var res = fnWithJsdoc.src;
+      var output = res.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
-        , [ 'highlighted (linenos: true firstline: 4',
+        , [ 'highlighted',
             '/**',
             ' * Adds c to d and then multiplies the result with d.',
             ' * ',
@@ -67,17 +70,18 @@ test('\nsrc writing of indexed functions', function (t) {
             '// ' + fixtures + '/function-with-jsdoc.js:12:17' ]
         , 'src outputs the function including jsdoc and location'
       )
+      t.deepEqual(res.lineInfo, { linenos: true, firstline: 3 }, 'correct lineinfo');
 
       t.end()
     })
 
     test('\nwhen I require a module without comments and its code was indexed', function (t) {
-      var output = fnWithoutComment.src.__replpad_print_raw__;
+      var res = fnWithoutComment.src;
+      var output = res.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
-        , [ 'highlighted (linenos: true firstline: 0',
-            '',
+        , [ 'highlighted',
             'function doingOtherStuff(c, d) {',
             '  return (c + d);',
             '}',
@@ -85,15 +89,18 @@ test('\nsrc writing of indexed functions', function (t) {
         , 'src outputs the function including location'
       )
 
+      t.deepEqual(res.lineInfo, { linenos: true, firstline: 3 }, 'correct lineinfo');
+
       t.end()
     })
   
     test('\nwhen I require a module with a jsdoc and its code was indexed, but the function exists twice', function (t) {
-      var output = fnSameWithJsdoc.src.__replpad_print_raw__;
+      var res = fnSameWithJsdoc.src;
+      var output = res.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
-        , [ 'highlighted (linenos: false firstline: NaN',
+        , [ 'highlighted',
             'function doingStuff(c, d) {',
             '  return console.log(\'This exact function exists twice\', c, d);',
             '}',
@@ -101,16 +108,18 @@ test('\nsrc writing of indexed functions', function (t) {
             '// ' + fixtures + '/same-function-without-comment.js:3:17' ]
         , 'src outputs the function without jsdoc including both locations'
       )
+      t.deepEqual(res.lineInfo, { linenos: false, firstline: undefined }, 'correct lineinfo');
 
       t.end()
     })
 
     test('\nwhen I require a module without comments and its code was indexed, but the function exists twice', function (t) {
-      var output = fnSameWithoutComment.src.__replpad_print_raw__;
+      var res = fnSameWithoutComment.src;
+      var output = res.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
-        , [ 'highlighted (linenos: false firstline: NaN',
+        , [ 'highlighted',
             'function doingStuff(c, d) {',
             '  return console.log(\'This exact function exists twice\', c, d);',
             '}',
@@ -118,6 +127,7 @@ test('\nsrc writing of indexed functions', function (t) {
             '// ' + fixtures + '/same-function-without-comment.js:3:17' ]
         , 'src outputs the function including both locations'
       )
+      t.deepEqual(res.lineInfo, { linenos: false, firstline: undefined }, 'correct lineinfo');
 
       t.end()
     })
