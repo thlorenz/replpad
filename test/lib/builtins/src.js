@@ -10,25 +10,15 @@ var wire = require('../../../lib/wire')
 var format = require('util').format
 var findexquire = require('../../../lib/findexquire')(__filename, true)
 
-var output = ''
 var fixtures = path.join(__dirname, '..', '..', 'fixtures');
 
 (function stubThings () {
-  var repl = { 
-    outputStream: { 
-      write: function (s) { output += s } 
-    } 
-  }
-  require('../../../lib/builtins/src')(repl);
+  require('../../../lib/builtins/src')();
 
   require('cardinal').highlight = function (src, opts) { 
     return format('highlighted (linenos: %s firstline: %d\n%s', opts.linenos, opts.firstline, src);  
   }
 })()
-
-function inspect(obj, depth) {
-  console.log(require('util').inspect(obj, false, depth || 5, true));
-}
 
 var fnWithJsdoc          =  findexquire('../../fixtures/function-with-jsdoc', true)
 var fnWithoutComment     =  findexquire('../../fixtures/function-without-comment', true)
@@ -38,8 +28,7 @@ var fnSameWithoutComment =  findexquire('../../fixtures/same-function-without-co
   
 // TODO: check first line for all tests
 test('\nwhen I require a module with a jsdoc and its code was indexed', function (t) {
-  output = ''
-  fnWithJsdoc.src;
+  var output = fnWithJsdoc.src.__replpad_print_raw__
   
   t.deepEqual(
       output.split('\n')
@@ -58,8 +47,7 @@ test('\nsrc writing of indexed functions', function (t) {
   wire.on('findex-first-pass', function () {
     
     test('\nwhen I require a module with a jsdoc and its code was indexed', function (t) {
-      output = ''
-      fnWithJsdoc.src;
+      var output = fnWithJsdoc.src.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
@@ -84,8 +72,7 @@ test('\nsrc writing of indexed functions', function (t) {
     })
 
     test('\nwhen I require a module without comments and its code was indexed', function (t) {
-      output = ''
-      fnWithoutComment.src;
+      var output = fnWithoutComment.src.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
@@ -102,8 +89,7 @@ test('\nsrc writing of indexed functions', function (t) {
     })
   
     test('\nwhen I require a module with a jsdoc and its code was indexed, but the function exists twice', function (t) {
-      output = ''
-      fnSameWithJsdoc.src;
+      var output = fnSameWithJsdoc.src.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')
@@ -120,8 +106,7 @@ test('\nsrc writing of indexed functions', function (t) {
     })
 
     test('\nwhen I require a module without comments and its code was indexed, but the function exists twice', function (t) {
-      output = ''
-      fnSameWithoutComment.src;
+      var output = fnSameWithoutComment.src.__replpad_print_raw__;
       
       t.deepEqual(
           output.split('\n')

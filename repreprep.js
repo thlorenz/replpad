@@ -18,7 +18,6 @@ var repl            =  require('repl')
   , stdin           =  process.stdin
   , stdout          =  process.stdout
   ;
-
 function createRepl(stdin) {
   var r = repl.start({
         prompt          :  config.prompt || 'pad > '
@@ -40,7 +39,9 @@ function createRepl(stdin) {
   global.require = findexquire(path.join(process.cwd(), 'repl.js'), true);
 
   r.writer = function (s) {
-    return util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
+    // i.e. Function.src returns the higlighted string at __replpad_print_raw__ which we just want to print as is
+    var printRaw = s.__replpad_print_raw__;
+    return printRaw || util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
   };
 
   return r;
