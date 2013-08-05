@@ -1,7 +1,11 @@
 'use strict';
 /*jshint asi: true */
 
-var test = require('tap').test
+
+var debug //=  true;
+var test  =  debug  ? function () {} : require('tap').test
+var test_ =  !debug ? function () {} : require('tap').test
+
 var wire = require('../../lib/wire')
 var findexquire = require('../../lib/findexquire')
 // process.env.REPLPAD_DEBUG = true;
@@ -31,4 +35,14 @@ test('\nwhen I findexquire escodegen', function (t) {
     var consumerLocs = findexquire.find(sourcemap.SourceMapConsumer);
     t.equal(consumerLocs.length, 1, 'finds sourcemap.SourceMapConsumer after second pass')
   }
+})
+
+test('\nfindexquire resolve', function (t) {
+  var cardinal = findexquire(__filename).resolve('cardinal');
+  t.equal(cardinal, require.resolve('cardinal'), 'correctly resolves installed module')
+
+  var repreprep = findexquire(__filename).resolve('../../repreprep');
+  t.equal(repreprep, require.resolve('../../repreprep'), 'correclty resolves relative module')
+
+  t.end(); 
 })
