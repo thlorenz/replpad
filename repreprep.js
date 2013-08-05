@@ -29,9 +29,6 @@ function createRepl(stdin) {
       });
   log.repl = r;
 
-  // fs gets loaded by repl automatically
-  core(r, [ { request: 'fs', module: require('fs') }]);
-
   r.state = state;
   r.config = config;
 
@@ -55,6 +52,9 @@ function boot(stdin) {
 
   managePlugins();
   initBuiltins();
+
+  // this step needs to happen last otherwise the `dox` getters are invoked prematurely and all core functions output
+  core(repl);
 }
 
 
@@ -72,5 +72,6 @@ module.exports = function repreprep(root) {
     boot(stdin);
     var feedEdit = feedEdits(stdin, stdout);
     watcher.on('file-changed', feedEdit);
+
   });
 };
