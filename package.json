@@ -45,7 +45,8 @@
     "findex": "~0.2.1",
     "function-comment": "~0.2.0",
     "cardinal": "~0.4.2",
-    "hermit": "~0.2.2"
+    "hermit": "~0.2.2",
+    "msee": "0.1.0-alpha.3"
   },
   "devDependencies": {
     "tap": "~0.4.1"
