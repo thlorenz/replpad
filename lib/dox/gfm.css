@@ -1,0 +1,181 @@
+/* 
+Some basic Github styles and syntax highlighting CSS via Pygments.
+*/
+html {
+	font-size: 14px;
+	line-height: 1.6;
+	font-family: helvetica,arial,freesans,clean,sans-serif;
+	color: black;
+}
+body {
+	box-shadow: 0px 0px 0px 3px #eee;
+	border: 1px solid #CACACA;
+	width: 852px;
+	padding: 30px;
+	margin: auto;
+	margin-top: 20px;
+}
+h1 {
+	margin: 15px 0;
+	padding-bottom: 2px;
+	font-size: 24px;
+	border-bottom: 1px solid #EEE;
+}
+h2 {
+	margin: 20px 0 10px 0;
+	font-size: 18px;
+}
+h3 {
+	margin: 20px 0 10px 0;
+	padding-bottom: 2px;
+	font-size: 14px;
+	border-bottom: 1px solid #DDD;
+}
+h4 {
+	font-size: 14px;
+	line-height: 26px;
+	padding: 18px 0 4px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+h5 {
+	font-size: 13px;
+	line-height: 26px;
+	padding: 14px 0 0;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+h6 {
+	color: #666;
+	font-size: 14px;
+	line-height: 26px;
+	padding: 18px 0 0;
+	font-weight: normal;
+	font-variant: italic;
+}
+br+br {
+	line-height:0;
+	height:0;
+	display:none;
+}
+p {
+	margin: 1em 0;
+}
+blockquote {
+ 	margin: 14px 0;
+ 	border-left: 4px solid #DDD;
+ 	padding-left: 11px;
+ 	color: #555;
+}
+pre, code {
+	font-family: 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+pre {
+	background-color: #F8F8F8;
+	border: 1px solid #CCC;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+	color: black;
+}
+code {
+	margin: 0 2px;
+	padding: 2px 5px;
+	white-space: nowrap;
+	border: 1px solid #CCC;
+	background-color: #F8F8F8;
+	border-radius: 3px;
+	font-size: 12px !important;
+}
+pre > code {
+    margin: 0px;
+	padding: 0px;
+	white-space: pre;
+	border: none;
+	background-color: transparent;
+	border-radius: 0;
+}
+a, a code {
+	color: #4183C4;
+	text-decoration:none;
+}
+a:hover, a code:hover {
+	text-decoration:underline;
+}
+table {
+	border-collapse: collapse;
+	margin: 20px 0 0;
+	padding: 0;
+}
+table tr th, table tr td {
+	border: 1px solid #CCC;
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+table tbody tr:nth-child(2n-1) {
+        background-color: #F8F8F8;
+}
+
+.c{color:#998;font-style:italic;}
+.err{color:#a61717;background-color:#e3d2d2;}
+.k{font-weight:bold;}
+.o{font-weight:bold;}
+.cm{color:#998;font-style:italic;}
+.cp{color:#999;font-weight:bold;}
+.c1{color:#998;font-style:italic;}
+.cs{color:#999;font-weight:bold;font-style:italic;}
+.gd{color:#000;background-color:#fdd;}
+.gd .x{color:#000;background-color:#faa;}
+.ge{font-style:italic;}
+.gr{color:#a00;}
+.gh{color:#999;}
+.gi{color:#000;background-color:#dfd;}
+.gi .x{color:#000;background-color:#afa;}
+.go{color:#888;}
+.gp{color:#555;}
+.gs{font-weight:bold;}
+.gu{color:#800080;font-weight:bold;}
+.gt{color:#a00;}
+.kc{font-weight:bold;}
+.kd{font-weight:bold;}
+.kn{font-weight:bold;}
+.kp{font-weight:bold;}
+.kr{font-weight:bold;}
+.kt{color:#458;font-weight:bold;}
+.m{color:#099;}
+.s{color:#d14;}
+.na{color:#008080;}
+.nb{color:#0086B3;}
+.nc{color:#458;font-weight:bold;}
+.no{color:#008080;}
+.ni{color:#800080;}
+.ne{color:#900;font-weight:bold;}
+.nf{color:#900;font-weight:bold;}
+.nn{color:#555;}
+.nt{color:#000080;}
+.nv{color:#008080;}
+.ow{font-weight:bold;}
+.w{color:#bbb;}
+.mf{color:#099;}
+.mh{color:#099;}
+.mi{color:#099;}
+.mo{color:#099;}
+.sb{color:#d14;}
+.sc{color:#d14;}
+.sd{color:#d14;}
+.s2{color:#d14;}
+.se{color:#d14;}
+.sh{color:#d14;}
+.si{color:#d14;}
+.sx{color:#d14;}
+.sr{color:#009926;}
+.s1{color:#d14;}
+.ss{color:#990073;}
+.bp{color:#999;}
+.vc{color:#008080;}
+.vg{color:#008080;}
+.vi{color:#008080;}
+.il{color:#099;}

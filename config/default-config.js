@@ -5,7 +5,7 @@
  * Important when upgrading replpad.
  * @name version
  */
-exports.version = '0.9';
+exports.version = '0.10';
 
 /**
   * Declares vim like key mappings
@@ -121,4 +121,17 @@ exports.scriptietalkie = {
 
     // set to true to activate scriptie talkie when replpad starts, you can toggle this setting via the '.talk' command
   , active: false
+};
+
+/**
+ * Configure what happens when you execute .dox() on an nmp package, i.e. request.dox()
+ * @name 
+ */
+exports.readme = {
+
+    // render readme markdown inside the repl
+    render: true
+
+    // write rendered html file to your tmp directory and open it in your browser
+  , open: true
 };
