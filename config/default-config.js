@@ -125,13 +125,16 @@ exports.scriptietalkie = {
 
 /**
  * Configure what happens when you execute .dox() on an nmp package, i.e. request.dox()
+ * In either case the package homepage and/or gitub url are printed to the terminal.
+ * If no internet connection is available the readme will be rendered locally and the path to the file printed and 
+ * the file automatically opened in the browser if the `open` flag is set.
  * @name 
  */
 exports.readme = {
 
-    // render readme markdown inside the repl
+    // print rendered readme markdown inside the repl
     render: true
 
-    // write rendered html file to your tmp directory and open it in your browser
-  , open: true
+    // automatically open the github url or locally rendered readme file in your browser
+  , open: false
 };
