@@ -97,9 +97,15 @@ test('\nsrc writing of indexed functions', function (t) {
     test('\nwhen I require a module with a jsdoc and its code was indexed, but the function exists twice', function (t) {
       var res = fnSameWithJsdoc.src;
       var output = res.__replpad_print_raw__;
+      var lines = output.split('\n')
+
+      // fixtures may come out in arbitrary order, make determinate for tests
+      var codeLines = lines.slice(0, -2);
+      var fixtureLines = lines.slice(-2);
+      lines = codeLines.concat(fixtureLines.sort());
       
       t.deepEqual(
-          output.split('\n')
+          lines 
         , [ 'highlighted',
             'function doingStuff(c, d) {',
             '  return console.log(\'This exact function exists twice\', c, d);',
@@ -116,9 +122,15 @@ test('\nsrc writing of indexed functions', function (t) {
     test('\nwhen I require a module without comments and its code was indexed, but the function exists twice', function (t) {
       var res = fnSameWithoutComment.src;
       var output = res.__replpad_print_raw__;
+      var lines = output.split('\n')
+
+      // fixtures may come out in arbitrary order, make determinate for tests
+      var codeLines = lines.slice(0, -2);
+      var fixtureLines = lines.slice(-2);
+      lines = codeLines.concat(fixtureLines.sort());
       
       t.deepEqual(
-          output.split('\n')
+          lines
         , [ 'highlighted',
             'function doingStuff(c, d) {',
             '  return console.log(\'This exact function exists twice\', c, d);',
