@@ -128,7 +128,7 @@ exports.scriptietalkie = {
  * In either case the package homepage and/or gitub url are printed to the terminal.
  * If no internet connection is available the readme will be rendered locally and the path to the file printed and 
  * the file automatically opened in the browser if the `open` flag is set.
- * @name 
+ * @name readme
  */
 exports.readme = {
 
