@@ -37,7 +37,7 @@ function createRepl(stdin) {
 
   r.writer = function (s) {
     // i.e. Function.src returns the higlighted string at __replpad_print_raw__ which we just want to print as is
-    var printRaw = s.__replpad_print_raw__;
+    var printRaw = s && s.__replpad_print_raw__;
     return printRaw || util.inspect(s, config.inspect.showHidden, config.inspect.depth, true);
   };
 
