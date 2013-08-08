@@ -53,7 +53,6 @@ function boot(stdin) {
   managePlugins();
   initBuiltins();
 
-  // this step needs to happen last otherwise the `dox` getters are invoked prematurely and all core functions output
   core(repl);
 }
 
