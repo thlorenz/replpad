@@ -11,8 +11,11 @@ Check out the [replpad home page](http://thlorenz.github.com/replpad/) for demos
 ## Features
 
 - **watches all `*.js` files** inside `root` and all subdirectories and sources a file to the repl once it changes
-- **highlights source code** and **shows location of function definition** where possible, i.e. `require('fs').readFile.src`
 - **access core module docs in the repl** via the `dox()` function that is added to every core function, i.e. `fs.readdir.dox()`
+- **access user module readmes in the repl** via the `dox()` function that is added to every module installed via npm,
+  i.e. `marked.dox()`
+- access function's **highlighted source code**, info on **where function was defined** (file, linenumber) and function
+  comments and/or **jsdocs** where possible via the `src` property that is added to every function, i.e. `express.logger.src`
 - **[scriptie-talkie](https://github.com/thlorenz/scriptie-talkie) support**  (see `.talk` command)
 - **adds commands and keyboard shortcuts** 
 - **vim key bindings**
@@ -195,7 +198,6 @@ Reading the comments in that file should give you enough information to tweak it
 
 - more vim bindings
 - only pipe part of a file enclosed by `start/stop` comments
-- jsdoc support
 - pause/resume feeding files via command
 - list an object's properties by type (i.e. `Function`, `Object`, `String`)
 
