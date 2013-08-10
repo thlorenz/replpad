@@ -31,18 +31,20 @@ Check out the [replpad home page](http://thlorenz.github.com/replpad/) for demos
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [API](#api)
 - [Commands](#commands)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Smart Append](#smart-append)
-- [Plugins ](#plugins)
-    - [Vim](#vim)
-        - [Vim Bindings](#vim-bindings)
-        - [Vim like key maps](#vim-like-key-maps)
-        - [Limitations](#limitations)
-    - [match token](#match-token)
+- [Plugins](#plugins)
+  - [Vim](#vim)
+    - [Vim Bindings](#vim-bindings)
+    - [Vim like key maps](#vim-like-key-maps)
+    - [Limitations](#limitations)
+  - [match token](#match-token)
 - [Using replpad with the Vim Editor](#using-replpad-with-the-vim-editor)
 - [Configuring replpad](#configuring-replpad)
 - [Roadmap](#roadmap)
+
 
 ## Installation
 
@@ -63,7 +65,7 @@ You can use replpad inside of your application and specify repl start options:
 ```js
 var replpad = require('replpad');
 
-var repl = replpad {
+var repl = replpad({
     prompt          :  'my-prompt >'
   , input           :  process.stdin
   , output          :  process.stdout
@@ -71,7 +73,7 @@ var repl = replpad {
   , useColors       :  true
   , useGlobal       :  true
   , terminal        :  true
-};
+});
 ```
 
 ## Commands
