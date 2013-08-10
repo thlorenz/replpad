@@ -18,15 +18,17 @@ var repl            =  require('repl')
   , stdin           =  process.stdin
   , stdout          =  process.stdout
   ;
-function createRepl(stdin) {
+function createRepl(opts) {
+  opts = opts || {};
   var r = repl.start({
-        prompt          :  config.prompt || 'pad > '
-      , input           :  stdin
-      , output          :  stdout
-      , ignoreUndefined :  true
-      , useColors       :  true
-      , useGlobal       :  true
-      });
+      prompt          :  opts.prompt          || config.prompt || 'pad > '
+    , input           :  opts.input           || stdin
+    , output          :  opts.output          || stdout
+    , ignoreUndefined :  opts.ignoreUndefined || true
+    , useColors       :  opts.useColors       || true
+    , useGlobal       :  opts.useGlobal       || true
+    , terminal        :  opts.terminal        || true
+    });
   log.repl = r;
 
   r.state = state;
@@ -44,33 +46,38 @@ function createRepl(stdin) {
   return r;
 }
 
-function boot(stdin) {
+function boot(opts) {
   instructions();
 
-  var repl = createRepl(stdin);
+  var repl = createRepl(opts);
   state.__defineGetter__('repl', function () { return repl; });
 
   managePlugins();
   initBuiltins();
 
   core(repl);
+  return repl;
 }
 
 
-module.exports = function repreprep(root) {
+module.exports = function repreprep(root, opts) {
+
+  if (typeof root === 'object') {
+    opts = root;
+    root = null;
+  }
 
   initConfig();
 
   if (!root) {
     log.print('Watching no files since no path was specified.');
-    return boot(stdin);
+    return boot(opts);
   }
 
   var watcher = initWatcher(root);
   watcher.on('initialized', function () {
-    boot(stdin);
+    boot(opts);
     var feedEdit = feedEdits(stdin, stdout);
     watcher.on('file-changed', feedEdit);
-
   });
 };
