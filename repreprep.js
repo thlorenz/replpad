@@ -4,6 +4,7 @@ var repl            =  require('repl')
   , path            =  require('path')
   , cardinal        =  require('cardinal')
   , util            =  require('util')
+  , xtend           =  require('xtend')
   , state           =  require('./lib/state')
   , config          =  require('./config/current')
   , initConfig      =  require('./config/init')
@@ -51,15 +52,14 @@ function boot(opts) {
 }
 
 function getReplOpts (opts) {
-  return {
-      input           :  opts.input  || stdin
-    , output          :  opts.output || stdout
-
-    , ignoreUndefined :  opts.hasOwnProperty('ignoreUndefined') ? opts.ignoreUndefined :  true
-    , useColors       :  opts.hasOwnProperty('useColors')       ? opts.useColors       :  true
-    , useGlobal       :  opts.hasOwnProperty('useGlobal')       ? opts.useGlobal       :  true
-    , terminal        :  opts.hasOwnProperty('terminal')        ? opts.terminal        :  true
-  };
+  return xtend({
+      input           :  stdin
+    , output          :  stdout
+    , ignoreUndefined :  true
+    , useColors       :  true
+    , useGlobal       :  true
+    , terminal        :  true
+  }, opts);
 }
 
 
