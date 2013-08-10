@@ -56,6 +56,23 @@ If `path/to/root` is omitted then no files are watched.
 
 **Example:** `replpad .` watches current directory and all sub directories.
 
+## API
+
+You can use replpad inside of your application and specify repl start options:
+
+```js
+var replpad = require('replpad');
+
+var repl = replpad {
+    prompt          :  'my-prompt >'
+  , input           :  process.stdin
+  , output          :  process.stdout
+  , ignoreUndefined :  true
+  , useColors       :  true
+  , useGlobal       :  true
+  , terminal        :  true
+};
+```
 
 ## Commands
 
