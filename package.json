@@ -1,6 +1,6 @@
 {
   "name": "replpad",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "Pipes content of files to a node repl whenever they change and adds many more features to enable a highly interactive coding experience.",
   "main": "repreprep.js",
   "bin": {
