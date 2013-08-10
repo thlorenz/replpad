@@ -51,15 +51,14 @@ function boot(opts) {
 }
 
 function getReplOpts (opts) {
-  opts = opts || {};
   return {
-      prompt          :  opts.prompt          || config.prompt || 'pad > '
-    , input           :  opts.input           || stdin
-    , output          :  opts.output          || stdout
-    , ignoreUndefined :  opts.ignoreUndefined || true
-    , useColors       :  opts.useColors       || true
-    , useGlobal       :  opts.useGlobal       || true
-    , terminal        :  opts.terminal        || true
+      input           :  opts.input  || stdin
+    , output          :  opts.output || stdout
+
+    , ignoreUndefined :  opts.hasOwnProperty('ignoreUndefined') ? opts.ignoreUndefined :  true
+    , useColors       :  opts.hasOwnProperty('useColors')       ? opts.useColors       :  true
+    , useGlobal       :  opts.hasOwnProperty('useGlobal')       ? opts.useGlobal       :  true
+    , terminal        :  opts.hasOwnProperty('terminal')        ? opts.terminal        :  true
   };
 }
 
@@ -70,10 +69,16 @@ module.exports = function repreprep(root, opts) {
     opts = root;
     root = null;
   }
+  opts = opts || {};
 
   var replOpts = getReplOpts(opts);
+  log.output = replOpts.output;
 
   initConfig();
+
+  // override prompt with the one given in opts AFTER config was initialized
+  config.prompt = opts.prompt || config.prompt || 'pad > ';
+  replOpts.prompt = config.prompt;
 
   if (!root) {
     log.print('Watching no files since no path was specified.');
