@@ -19,16 +19,7 @@ var repl            =  require('repl')
   , stdout          =  process.stdout
   ;
 function createRepl(opts) {
-  opts = opts || {};
-  var r = repl.start({
-      prompt          :  opts.prompt          || config.prompt || 'pad > '
-    , input           :  opts.input           || stdin
-    , output          :  opts.output          || stdout
-    , ignoreUndefined :  opts.ignoreUndefined || true
-    , useColors       :  opts.useColors       || true
-    , useGlobal       :  opts.useGlobal       || true
-    , terminal        :  opts.terminal        || true
-    });
+  var r = repl.start(opts);
   log.repl = r;
 
   r.state = state;
@@ -47,7 +38,7 @@ function createRepl(opts) {
 }
 
 function boot(opts) {
-  instructions();
+  instructions(opts.output);
 
   var repl = createRepl(opts);
   state.__defineGetter__('repl', function () { return repl; });
@@ -59,6 +50,19 @@ function boot(opts) {
   return repl;
 }
 
+function getReplOpts (opts) {
+  opts = opts || {};
+  return {
+      prompt          :  opts.prompt          || config.prompt || 'pad > '
+    , input           :  opts.input           || stdin
+    , output          :  opts.output          || stdout
+    , ignoreUndefined :  opts.ignoreUndefined || true
+    , useColors       :  opts.useColors       || true
+    , useGlobal       :  opts.useGlobal       || true
+    , terminal        :  opts.terminal        || true
+  };
+}
+
 
 module.exports = function repreprep(root, opts) {
 
@@ -67,16 +71,18 @@ module.exports = function repreprep(root, opts) {
     root = null;
   }
 
+  var replOpts = getReplOpts(opts);
+
   initConfig();
 
   if (!root) {
     log.print('Watching no files since no path was specified.');
-    return boot(opts);
+    return boot(replOpts);
   }
 
   var watcher = initWatcher(root);
   watcher.on('initialized', function () {
-    boot(opts);
+    boot(replOpts);
     var feedEdit = feedEdits(stdin, stdout);
     watcher.on('file-changed', feedEdit);
   });
