@@ -1,5 +1,7 @@
 # replpad [![build status](https://secure.travis-ci.org/thlorenz/replpad.png)](http://next.travis-ci.org/thlorenz/replpad)
 
+[![NPM](https://nodei.co/npm/replpad.png?downloads=true&stars=true)](https://nodei.co/npm/replpad/)
+
 Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.
 
 Adds keymaps, doc access, vim binding and maps and prints highlighted source of functions right in the repl.
