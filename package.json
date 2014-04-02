@@ -7,7 +7,11 @@
     "replpad": "./bin/replpad.js"
   },
   "scripts": {
-    "test": "tap test/"
+    "test-main": "set -e; for t in test/*.js; do node $t; done",
+    "test-0.8": "nave use 0.8 npm run test-main",
+    "test-0.10": "nave use 0.10 npm run test-main",
+    "test-all": "npm run test-main && npm run test-0.8 && npm run test-0.10",
+    "test": "if [ -e $TRAVIS ]; then npm run test-all; else npm run test-main; fi"
   },
   "repository": {
     "type": "git",
