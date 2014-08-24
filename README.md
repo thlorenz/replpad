@@ -84,6 +84,7 @@ Some commands were added to the built in `repl` commands. Here is a list of all 
 
 ```
 pad > .help
+
 .append         Appends the last entered parsable chunk of code or the last line to the last file that was sourced in the repl
 
 .clear          Break, and also clear the local context
@@ -96,15 +97,16 @@ pad > .help
 
 .help           Show this list of repl commands
 
-.hidden         [off] Set whether hidden properties are included during traversal of an object that is printed to the repl
+.hidden         [off] Set whether hidden properties are included during traversal of an object that is printed to the
+repl
 
 .highlight      [off] Toggles if syntax highlighted code is printed to the repl before being sourced
 
 .load           Load JS from a file into the REPL session
 
-.save           Save all evaluated commands in this REPL session to a file
+.pack           Load your package.json dependencies and devDependencies into the repl context
 
-.talk           [off] Toggles whether the file content is evaluated with scriptie-talkie when it is piped to the repl
+.save           Save all evaluated commands in this REPL session to a file
 ```
 
 **Note:** commands that toggle a setting like `.compact` take a second parameter: `on|off`. If it is ommitted the state
