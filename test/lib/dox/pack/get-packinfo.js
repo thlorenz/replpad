@@ -22,14 +22,15 @@ test('\ngets cardinal packinfo', function (t) {
   });
 })
 
-test('\ngets marked packinfo', function (t) {
-  info('marked', function (err, res) {
+test('\ngets xtend packinfo', function (t) {
+  info('xtend', function (err, res) {
     t.notOk(err, 'no error')
-    t.equal(res.homepage, 'https://github.com/chjj/marked', 'homepage')
-    t.equal(res.url, 'https://github.com/chjj/marked', 'browseable github url')
-    
+    t.equal(res.homepage, 'https://github.com/Raynos/xtend', 'homepage')
+    t.equal(res.url, 'https://github.com/Raynos/xtend', 'browseable github url')
+
     // no idea why `res.readme` isn't defined on travis
     if (!process.env.TRAVIS) {
+      console.log(res);
       t.ok(res.readme.length > 0, 'readme string') 
       t.equal(res.readmeFilename, 'README.md', 'readme filename')
     }
