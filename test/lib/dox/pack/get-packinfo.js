@@ -30,7 +30,6 @@ test('\ngets xtend packinfo', function (t) {
 
     // no idea why `res.readme` isn't defined on travis
     if (!process.env.TRAVIS) {
-      console.log(res);
       t.ok(res.readme.length > 0, 'readme string') 
       // readme no longer included for marked (most likely an npm optimization since readme is large?)
       // t.equal(res.readmeFilename, 'README.md', 'readme filename')
