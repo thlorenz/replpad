@@ -36,6 +36,7 @@
     "ansicolors": "~0.2.1",
     "ansistyles": "~0.1.1",
     "cardinal": "~0.4.2",
+    "chokidar": "~0.11.1",
     "escodegen": "0.0.15",
     "esprima": "~1.0.3",
     "find-parent-dir": "~0.1.0",
