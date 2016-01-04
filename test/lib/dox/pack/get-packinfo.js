@@ -16,7 +16,7 @@ test('\ngets cardinal packinfo', function (t) {
   info('cardinal', function (err, res) {
     t.notOk(err, 'no error')
     t.equal(res.url, 'https://github.com/thlorenz/cardinal', 'browseable github url')
-    t.equal(res.readmeFilename, 'README.md', 'readme filename')
+    t.equal(res.readme, 'README.md', 'readme filename')
     t.ok(res.readme.length > 0, 'readme string')
     t.end()    
   });

@@ -3,6 +3,7 @@
   "version": "0.14.0",
   "description": "Pipes content of files to a node repl whenever they change and adds many more features to enable a highly interactive coding experience.",
   "main": "repreprep.js",
+  "readme": "README.md",
   "bin": {
     "replpad": "./bin/replpad.js"
   },
