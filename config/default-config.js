@@ -78,6 +78,12 @@ exports.inspect =  {
 };
 
 /**
+ * Fix double-eval when using Vim
+ * @name usingVim
+ */
+exports.usingVim =  true;
+
+/**
  * Toggles if piped code is syntax highlighted before being sourced in the repl
  * Can be set in repl via: .highlight
  * @name highlight

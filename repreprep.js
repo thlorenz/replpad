@@ -59,6 +59,7 @@ function getReplOpts (opts) {
     , useColors       :  true
     , useGlobal       :  true
     , terminal        :  true
+    , usingVim        :  true
   }, opts);
 }
 
