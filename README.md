@@ -1,6 +1,6 @@
-# replpad [![build status](https://secure.travis-ci.org/thlorenz/replpad.png)](http://next.travis-ci.org/thlorenz/replpad)
+# replpad [![build status](https://secure.travis-ci.org/thlorenz/replpad.svg?branch=master)](http://next.travis-ci.org/thlorenz/replpad)
 
-[![NPM](https://nodei.co/npm/replpad.png?downloads=true&stars=true)](https://nodei.co/npm/replpad/)
+<a href="https://www.patreon.com/bePatron?u=8663953"><img alt="become a patron" src="https://c5.patreon.com/external/logo/become_a_patron_button.png" height="35px"></a>
 
 Pipes content of files to a node repl whenever they change to enable a highly interactive coding experience.
 
