@@ -4,7 +4,7 @@
 var test     =  require('tap').test
   , retrieve =  require('../../../../lib/dox/core/retrieve')
   , format   =  require('util').format
-  , rootUrl  =  format('http://nodejs.org/docs/%s/api', process.version)
+  , rootUrl  =  format('https://nodejs.org/docs/%s/api', process.version)
 
 
 test('\nwhen I retrieve fs', function (t) {
