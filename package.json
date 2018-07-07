@@ -7,7 +7,7 @@
     "replpad": "./bin/replpad.js"
   },
   "scripts": {
-    "test-main": "tap test/",
+    "test-main": "tap test/*.js",
     "test-0.8": "nave use 0.8 npm run test-main",
     "test-0.10": "nave use 0.10 npm run test-main",
     "test-all": "npm run test-main && npm run test-0.8 && npm run test-0.10",
@@ -36,11 +36,11 @@
     "ansicolors": "~0.2.1",
     "ansistyles": "~0.1.1",
     "cardinal": "~0.4.2",
-    "chokidar": "~0.12.6",
+    "chokidar": "~1.7.0",
     "escodegen": "0.0.15",
     "esprima": "~1.0.3",
     "find-parent-dir": "~0.1.0",
-    "findex": "~0.2.1",
+    "findex": "othiym23/findex",
     "function-comment": "~0.2.0",
     "hasinternet": "0.0.0",
     "hermit": "~0.2.2",
@@ -49,16 +49,16 @@
     "mothership": "~0.3.0",
     "msee": "~0.1.1",
     "opener": "~1.3.0",
-    "readdirp": "~1.3.0",
+    "readdirp": "~2.1.0",
     "readline-matchtoken": "~0.1.0",
     "readline-vim": "~0.3.0",
     "request": "~2.12.0",
     "require-like": "~0.1.2",
     "scriptie-talkie": "~0.4.7",
-    "xtend": "~2.0.6"
+    "xtend": "~4.0.1"
   },
   "devDependencies": {
-    "nave": "~0.4.5",
-    "tap": "~0.4.1"
+    "nave": "~2.2.3",
+    "tap": "~10.7.0"
   }
 }
