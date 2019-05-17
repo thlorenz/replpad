@@ -15,7 +15,13 @@ function loadFrom (p) {
 }
 
 module.exports = function () {
-  if (!utl.existsSync(paths.configFile)) {
+  if (!paths.configFile) {
+
+    log.error('Unable to find home directory');
+    log.infoln('Using default config');
+    return require('./default-config');
+
+  } else if (!utl.existsSync(paths.configFile)) {
 
     mkdirp.sync(path.dirname(paths.configFile));
 
